@@ -1,8 +1,8 @@
-<body>
+<div id="body">
     <div id="container">
         <slot />
     </div>
-</body>
+</div>
 
 <style>
     @font-face {
@@ -13,10 +13,7 @@
         font-style: normal;
     }
 
-    body {
-        background: #fbfbfb;
-        margin: 0px;
-
+    #body {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -26,5 +23,6 @@
         padding: 92px 40px 40px 40px;
         padding-top: 92px;
         max-width: 1224px;
+        width: 100%;
     }
 </style>

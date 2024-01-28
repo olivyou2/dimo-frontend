@@ -1,4 +1,6 @@
 <script>
+    import Sort from "./Sort.svelte";
+
     /**
      * @description The categories of the header
      * @type {string[]}
@@ -30,12 +32,7 @@
                 <input id="input" type="text" placeholder="페이지 이름 검색" />
             </div>
         </div>
-        <div id="sort">
-            <div id="sortby">가나다순</div>
-            <div id="icon_wrapper">
-                <img src="/dropdown.svg" alt="" />
-            </div>
-        </div>
+        <Sort />
     </div>
 </div>
 
@@ -115,28 +112,6 @@
 
                 #input::placeholder {
                     color: rgba(0, 0, 0, 0.3);
-                }
-            }
-
-            > #sort {
-                display: flex;
-                column-gap: 10px;
-                align-items: center;
-
-                > #sortby {
-                    color: rgba(0, 0, 0, 0.5);
-                    text-align: right;
-                    font-family: Pretendard;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
-
-                > #icon_wrapper {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                 }
             }
         }

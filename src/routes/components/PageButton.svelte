@@ -22,9 +22,33 @@
      * @type {string}
      */
     export let description;
+
+    /**
+     * @description Whether the page is clickable
+     * @type {boolean}
+     */
+    export let clickable = false;
+
+    /**
+     * @description Whether the page is clicked
+     * @type {boolean}
+     */
+    export let clicked = false;
+
+    const on_click = () => {
+        if (clickable) {
+            clicked = !clicked;
+        }
+    };
 </script>
 
-<div id="container">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+    id="container"
+    class={clicked ? "clicked" : ""}
+    on:click={() => on_click()}
+>
     <div id="title_section">
         <div id="title">
             {title}
@@ -49,7 +73,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     #container {
         display: flex;
         padding: 0px 24px;
@@ -57,6 +81,11 @@
         align-items: flex-start;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
         background: #fff;
+
+        /* border-radius: 8px;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05); */
+
         box-sizing: content-box;
     }
 
@@ -104,7 +133,6 @@
         gap: 16px;
 
         border-top: 1px solid rgba(0, 0, 0, 0.2);
-        background: #fff;
         padding-left: 4px;
         box-sizing: border-box;
     }
@@ -142,5 +170,16 @@
         align-self: stretch;
 
         line-break: anywhere;
+    }
+
+    #container.clicked {
+        background: rgba(0, 0, 0, 0.7);
+        * {
+            color: white;
+        }
+
+        #content_section {
+            border-top: 1px solid white;
+        }
     }
 </style>
