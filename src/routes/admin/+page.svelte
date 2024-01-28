@@ -1,369 +1,325 @@
 <script>
-    import Layout from "../+layout.svelte";
-    import Header from "../components/Header.svelte";
-    import PageButton from "../components/PageButton.svelte";
-    import Sort from "../components/Sort.svelte";
+    /**
+     * @description The pages database
+     * @type {{category: string, title: string, link: string, tags: string[], description: string, id: number}[]}
+     */
+    let pages = [
+  {
+    "id": 1,
+    "category": "mock",
+    "title": "ui design",
+    "link": "https://uidesign.com",
+    "tags": [
+      "#free",
+      "#easy_to_use"
+    ],
+    "description": "A free mock up tool for designing UI interfaces."
+  },
+  {
+    "id": 2,
+    "category": "icon",
+    "title": "graphic design",
+    "link": "https://icondesign.com",
+    "tags": [
+      "#premium",
+      "#variety"
+    ],
+    "description": "A premium tool for a large variety of icon designs."
+  },
+  {
+    "id": 3,
+    "category": "illustration",
+    "title": "artists",
+    "link": "https://illustration.com",
+    "tags": [
+      "#creative",
+      "#interactive"
+    ],
+    "description": "An interactive platform for artists to create and share illustrations."
+  },
+  {
+    "id": 4,
+    "category": "mock",
+    "title": "web design",
+    "link": "https://webdesignmock.com",
+    "tags": [
+      "#easy_to_use",
+      "#professional"
+    ],
+    "description": "An easy to use tool for professional web designs."
+  },
+  {
+    "id": 5,
+    "category": "icon",
+    "title": "app developer",
+    "link": "https://appicon.com",
+    "tags": [
+      "#free",
+      "#app_icons"
+    ],
+    "description": "A free tool designed for app developers to create unique app icons."
+  },
+  {
+    "id": 6,
+    "category": "illustration",
+    "title": "children books",
+    "link": "https://childrenbookart.com",
+    "tags": [
+      "#creative",
+      "#colorful"
+    ],
+    "description": "A tool for creating colorful and creative illustrations for children's books."
+  },
+  {
+    "id": 7,
+    "category": "mock",
+    "title": "product design",
+    "link": "https://productmock.com",
+    "tags": [
+      "#3D_view",
+      "#realistic"
+    ],
+    "description": "A realistic tool with 3D views for product designs."
+  },
+  {
+    "id": 8,
+    "category": "icon",
+    "title": "graphic design",
+    "link": "https://graphicicon.com",
+    "tags": [
+      "#customizable",
+      "#wide_range"
+    ],
+    "description": "A customizable tool with a wide range of graphic icons."
+  },
+  {
+    "id": 9,
+    "category": "illustration",
+    "title": "digital art",
+    "link": "https://digitalillustration.com",
+    "tags": [
+      "#free",
+      "#high_quality"
+    ],
+    "description": "A free tool for creating high-quality digital illustrations."
+  },
+  {
+    "id": 10,
+    "category": "mock",
+    "title": "interior design",
+    "link": "https://interiordesignmock.com",
+    "tags": [
+      "#interactive",
+      "#design_ideas"
+    ],
+    "description": "An interactive tool for creating interior design ideas."
+  },
+  {
+    "id": 11,
+    "category": "icon",
+    "title": "web design",
+    "link": "https://webicon.com",
+    "tags": [
+      "#free",
+      "#variety"
+    ],
+    "description": "A free tool for a large variety of web icons."
+  },
+  {
+    "id": 12,
+    "category": "illustration",
+    "title": "comics",
+    "link": "https://comicillustration.com",
+    "tags": [
+      "#creative",
+      "#easy_to_use"
+    ],
+    "description": "A creative and easy to use tool for comic illustrations."
+  },
+  {
+    "id": 13,
+    "category": "mock",
+    "title": "shirt design",
+    "link": "https://mockshirt.com",
+    "tags": [
+      "#customizable",
+      "#3D_view"
+    ],
+    "description": "A customizable tool with 3D views for shirt designs."
+  },
+  {
+    "id": 14,
+    "category": "icon",
+    "title": "mobile apps",
+    "link": "https://mobileicon.com",
+    "tags": [
+      "#premium",
+      "#variety"
+    ],
+    "description": "A premium tool for diverse mobile app icons."
+  },
+  {
+    "id": 15,
+    "category": "illustration",
+    "title": "portrait",
+    "link": "https://portraitillustration.com",
+    "tags": [
+      "#interactive",
+      "#detailed"
+    ],
+    "description": "An interactive tool for detailed portrait illustrations."
+  },
+  {
+    "id": 16,
+    "category": "mock",
+    "title": "furniture design",
+    "link": "https://furnituredesignmock.com",
+    "tags": [
+      "#easy_to_use",
+      "#realistic"
+    ],
+    "description": "An easy to use tool for realistic furniture designs."
+  },
+  {
+    "id": 17,
+    "category": "icon",
+    "title": "UI design",
+    "link": "https://uicon.com",
+    "tags": [
+      "#free",
+      "#user_friendly"
+    ],
+    "description": "A free and user-friendly tool for UI icons."
+  },
+  {
+    "id": 18,
+    "category": "illustration",
+    "title": "magazine covers",
+    "link": "https://magcoverillustration.com",
+    "tags": [
+      "#customizable",
+      "#creative"
+    ],
+    "description": "A customizable and creative tool for magazine cover illustrations."
+  },
+  {
+    "id": 19,
+    "category": "mock",
+    "title": "menu design",
+    "link": "https://menumock.com",
+    "tags": [
+      "#easy_to_use",
+      "#customizable"
+    ],
+    "description": "An easy to use and customizable tool for menu designs."
+  },
+  {
+    "id": 20,
+    "category": "icon",
+    "title": "website",
+    "link": "https://webicon.com",
+    "tags": [
+      "#wide_range",
+      "#premium"
+    ],
+    "description": "A premium tool for a wide range of website icons."
+  }
+    ];
+
+    function on_click_add(){
+        location.href = "/admin/modify?usage=create";
+    }
 
     /**
-     * @description tags
-     * @type {string[]}
+     * 
+     * @param idx {number}
      */
-    let tags = ["tag1", "tag2", "tag3"];
-
-    /**
-     * @description selected tags
-     * @type {string[]}
-     */
-    let selected_tags = [];
-
-    /**
-     * @description selected pages
-     * @type {{[key: number]: boolean}}
-     */
-    let selected_pages = {};
-
-    /**
-     * @description pages_database
-     * @type {{title: string, link: string, tags: string[], description: string, id: number}[]}
-     */
-    let pages_database = [];
-
-    /**
-     * @description pages will be rendered
-     * @type {{title: string, link: string, tags: string[], description: string, id: number}[]}
-     */
-    let pages = [];
-
-    /**
-     * @description search field
-     * @type {string}
-     */
-    let search = "";
-
-    /**
-     * @description sort field
-     * @type {string}
-     */
-    let sort = "가나다순";
-
-    /**
-     * @description add mockup tags
-     * @returns {void}
-     */
-    let add_mockup_tags = () => {
-        pages_database.push({
-            title: "title",
-            link: "link",
-            tags: ["tag1", "tag2"],
-            description: "description",
-            id: 1,
-        });
-
-        pages_database.push({
-            title: "title22222222222222222222222222222222",
-            link: "link",
-            tags: ["tag1", "tag2"],
-            description: "description",
-            id: 2,
-        });
-
-        pages_database.push({
-            title: "title",
-            link: "link22222222222222222222222222222222222222222",
-            tags: ["tag1", "tag2"],
-            description: "description",
-            id: 3,
-        });
-
-        pages_database.push({
-            title: "title",
-            link: "link",
-            tags: [
-                "tag1",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-            ],
-            description: "description",
-            id: 4,
-        });
-
-        pages_database.push({
-            title: "title",
-            link: "link",
-            tags: [
-                "tag1",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag2",
-                "tag3",
-                "tag2",
-                "tag2",
-            ],
-            description:
-                "국내에서 가장 널리 사용되는 한글 무료 폰트 모음 사이트. 국내에서 가장 널리 사용되는 한글 무료 폰트 모음 사이트.",
-            id: 5,
-        });
-    };
-
-    /**
-     * @description on tag update
-     * @param updated_tags {string[]}
-     * @param updated_search {string}
-     * @param selected_pages {{[key: number]: boolean}}
-     */
-    const on_filter_updated = (
-        updated_tags,
-        updated_search,
-        selected_pages,
-    ) => {
-        pages = [];
-
-        const candidates = [...pages_database];
-
-        for (const selected_page_item of Object.entries(selected_pages)) {
-            if (selected_page_item[1]) {
-                const found = candidates.find(
-                    (page) => page.id === Number(selected_page_item[0]),
-                );
-
-                if (found) {
-                    pages = [...pages, { ...found }];
-                    delete candidates[candidates.indexOf(found)];
-                    console.log(pages);
-                }
-            }
-        }
-
-        if (updated_tags.length === 0 && updated_search === "") {
-            pages = [...pages, ...candidates];
-            return;
-        }
-
-        const filter_pages = candidates.filter((page) => {
-            if (updated_search !== "") {
-                if (
-                    !page.title.includes(updated_search) &&
-                    !page.description.includes(updated_search)
-                ) {
-                    return false;
-                }
-            }
-
-            if (updated_tags.length !== 0) {
-                if (
-                    !updated_tags.every((tag) => page.tags.includes(tag)) &&
-                    !page.tags.some((tag) => updated_tags.includes(tag))
-                ) {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-
-        pages = [...pages, ...filter_pages];
-        console.log(pages);
-    };
-
-    /**
-     * @description on click tag menu
-     * @param tag {string}
-     */
-    const on_click_tag_menu = (tag) => {
-        if (selected_tags.includes(tag)) {
-            selected_tags = selected_tags.filter((t) => t !== tag);
-        } else {
-            selected_tags = [...selected_tags, tag];
-        }
-    };
-
-    const on_click_add_menu = () => {};
-
-    // if selected_tags or search updated, call on_filter_updated
-    $: on_filter_updated(selected_tags, search, selected_pages);
-
-    add_mockup_tags();
+    function on_click_modify(idx){
+        location.href = `/admin/modify?usage=modify&idx=${idx}`;
+    }
 </script>
 
 <div id="container">
-    <div id="top">
-        <div id="search">
-            <img src="/search.svg" alt="" />
-            <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="페이지 검색"
-                value={search}
-                on:keydown={(e) => {
-                    const target = e.currentTarget;
-                    setTimeout(() => {
-                        search = target.value;
-                    }, 5);
-                }}
-            />
-        </div>
-        <Sort bind:selected={sort} />
+    <div id="buttons">
+        <button on:click={on_click_add}>페이지 추가</button>
     </div>
-    <div id="bottom">
-        <div id="tags">
-            {#each tags as tag}
-                <button
-                    class="tag {selected_tags.includes(tag) ? 'activated' : ''}"
-                    on:click={() => on_click_tag_menu(tag)}
-                >
-                    <span>#</span>
-                    <span>{tag}</span>
-                </button>
+    <table>
+        <thead>
+            <tr>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>링크</th>
+                <th>태그</th>
+                <th>설명</th>
+                <th>삭제</th>
+                <th>수정</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each pages as page}
+                <tr>
+                    <td>{page.category}</td>
+                    <td>{page.title}</td>
+                    <td>{page.link}</td>
+                    <td>{page.tags.join(", ")}</td>
+                    <td>{page.description}</td>
+                    <td id="remove">
+                        <button
+                            on:click={() => {
+                                pages = pages.filter((p) => p.id !== page.id);
+                            }}
+                        >
+                            삭제
+                        </button>
+                    </td>
+                    <td id="modify">
+                        <button
+                            on:click={() => {
+                                on_click_modify(page.id);
+                            }}
+                        >
+                            수정
+                        </button>
+                    </td>
+                </tr>
             {/each}
-        </div>
-        <div id="buttons">
-            <button class="button" id="add">
-                <span>페이지 추가</span>
-            </button>
-            <button class="button" id="delete">
-                <span>페이지 제거</span>
-            </button>
-            <button class="button" id="modify">
-                <span>페이지 수정</span>
-            </button>
-        </div>
-        <div id="selected">
-            {#if Object.values(selected_pages).filter((item) => item === true).length > 0}
-                <span
-                    >{Object.values(selected_pages).filter(
-                        (item) => item === true,
-                    ).length}개 선택됨</span
-                >
-            {/if}
-        </div>
-    </div>
-    <div id="content">
-        {#each pages as page}
-            <PageButton
-                title={page.title}
-                link={page.link}
-                tags={page.tags}
-                description={page.description}
-                clickable={true}
-                bind:clicked={selected_pages[page.id]}
-            />
-        {/each}
-    </div>
+        </tbody>
+    </table>
 </div>
 
-<style lang="scss">
+<style>
     #container {
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
         width: 100%;
-        max-width: 1224px;
-        gap: 20px;
+    }
 
-        > #top {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-            > #search {
-                display: flex;
-                align-items: center;
-                gap: 10px;
+    th {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
 
-                > #name {
-                    border: none;
-                    background: none;
-                    color: rgba(0, 0, 0, 0.7);
-                    font-family: Pretendard;
-                    font-size: 20px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
+    td {
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
 
-                > #name::placeholder {
-                    color: rgba(0, 0, 0, 0.3);
-                }
-
-                > #name:focus {
-                    outline: none;
-                }
-            }
-        }
-
-        > #bottom {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 15px;
-
-            > #buttons {
-                display: flex;
-                gap: 10px;
-
-                > .button {
-                    background: white;
-                    border: none;
-                    border-radius: 0px;
-                    padding: 10px 15px;
-
-                    color: black;
-                    font-family: Pretendard;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-
-                    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
-
-                    cursor: pointer;
-                    user-select: none;
-                }
-            }
-
-            > #tags {
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-
-                > .tag {
-                    padding: 10px;
-                    border-radius: 10px;
-                    color: rgba(0, 0, 0, 0.7);
-                    background-color: white;
-                    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1));
-                    user-select: none;
-                    border: none;
-                    cursor: pointer;
-                    transition: all 0.1s ease-in-out;
-                }
-
-                > .tag.activated {
-                    background-color: rgba(0, 0, 0, 0.1);
-                }
-            }
-        }
-
-        > #content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px 24px;
-            align-items: flex-start;
-            align-content: flex-start;
-        }
+    #remove,#modify{
+        width: 40px;
     }
 </style>
