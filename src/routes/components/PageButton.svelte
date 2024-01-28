@@ -1,0 +1,146 @@
+<script>
+    /**
+     * @description The title of the page
+     * @type {string}
+     */
+    export let title;
+
+    /**
+     * @description The link of the page
+     * @type {string}
+     */
+    export let link;
+
+    /**
+     * @description The tags of the page
+     * @type {string[]}
+     */
+    export let tags;
+
+    /**
+     * @description The description of the page
+     * @type {string}
+     */
+    export let description;
+</script>
+
+<div id="container">
+    <div id="title_section">
+        <div id="title">
+            {title}
+        </div>
+        <div id="link">
+            {link}
+        </div>
+    </div>
+
+    <div id="content_section">
+        <div id="tag_section">
+            {#each tags as tag}
+                <div class="tag">
+                    <span>#</span>
+                    <span>{tag}</span>
+                </div>
+            {/each}
+        </div>
+        <div id="description">
+            {description}
+        </div>
+    </div>
+</div>
+
+<style>
+    #container {
+        display: flex;
+        padding: 0px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+        background: #fff;
+        box-sizing: content-box;
+    }
+
+    #title_section {
+        display: flex;
+        width: 240px;
+        padding: 32px 0px 28px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #title {
+        color: rgba(0, 0, 0, 0.7);
+        font-family: Pretendard;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        padding-left: 4px;
+
+        line-break: anywhere;
+    }
+
+    #link {
+        color: rgba(0, 0, 0, 0.5);
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding-left: 4px;
+
+        line-break: anywhere;
+    }
+
+    #content_section {
+        display: flex;
+        width: 240px;
+        padding: 28px 0px 32px 0px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 16px;
+
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        background: #fff;
+        padding-left: 4px;
+        box-sizing: border-box;
+    }
+
+    #tag_section {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        gap: 4px 16px;
+        align-self: stretch;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+
+        color: rgba(0, 0, 0, 0.7);
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    #description {
+        color: rgba(0, 0, 0, 0.5);
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 160%; /* 25.6px */
+
+        align-self: stretch;
+
+        line-break: anywhere;
+    }
+</style>
