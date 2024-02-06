@@ -35,14 +35,14 @@
 
 <style lang="scss">
     #container {
-        width: calc(100vw - 85px);
-        height: 120px;
+        width: calc(100vw - 57px);
+        height: 80px;
 
         display: flex;
         flex-direction: row;
 
-        padding-left: 52px;
-        padding-right: 33px;
+        padding-left: 34px;
+        padding-right: 23px;
 
         align-items: center;
         justify-content: space-between;
@@ -52,11 +52,11 @@
 
         > #categories {
             display: flex;
-            gap: 40px;
+            gap: 26px;
             > .category {
                 color: rgba(0, 0, 0, 0.5);
                 font-family: Pretendard;
-                font-size: 24px;
+                font-size: 16px;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
