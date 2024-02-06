@@ -50,7 +50,7 @@
 <style lang="scss">
     #sort {
         display: flex;
-        column-gap: 10px;
+        column-gap: 6px;
         align-items: center;
         user-select: none;
         cursor: pointer;
@@ -60,7 +60,7 @@
             color: rgba(0, 0, 0, 0.5);
             text-align: right;
             font-family: Pretendard;
-            font-size: 16px;
+            font-size: 10px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;

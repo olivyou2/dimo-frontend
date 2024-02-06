@@ -1,4 +1,5 @@
 <script>
+    import Filter from "../components/Filter.svelte";
     import Header from "../components/Header.svelte";
     import PageButton from "../components/PageButton.svelte";
 
@@ -75,6 +76,7 @@
     <Header
         categories={["전체", "폰트", "목업", "소스", "아이콘", "레퍼런스"]}
     />
+    <Filter />
     <div id="container">
         {#each sites as site}
             <PageButton

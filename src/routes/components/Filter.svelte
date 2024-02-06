@@ -1,0 +1,38 @@
+<script>
+    import Search from "./Search.svelte";
+    import Sort from "./Sort.svelte";
+</script>
+
+<div id="wrapper">
+    <div id="container">
+        <div id="search">
+            <Search />
+        </div>
+        <div id="sort_container">
+            <Sort />
+            <Sort />
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+    #wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    #container {
+        display: flex;
+        width: 100%;
+        max-width: 816px;
+        justify-content: space-between;
+
+        > #search {
+        }
+
+        > #sort_container {
+            display: flex;
+            gap: 21px;
+        }
+    }
+</style>

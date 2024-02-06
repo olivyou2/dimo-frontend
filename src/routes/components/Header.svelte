@@ -65,6 +65,8 @@
                 background: none;
                 border: none;
                 padding: 0px;
+
+                cursor: pointer;
             }
 
             > .category.activated {
