@@ -1,6 +1,6 @@
 name: Deploy to Product Server
 
-on: workflow_dispatch
+on: [workflow_dispatch, push]
 jobs:
   build-and-deploy:
     runs-on: self-hosted
