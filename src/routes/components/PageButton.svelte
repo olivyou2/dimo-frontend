@@ -64,9 +64,9 @@
     <div id="title_section">
         <div id="title">
             <div id="left">
-                <div id="text">
+                <a href={link} id="text">
                     {title}
-                </div>
+                </a>
                 <img src="/favicon.svg" alt="" width="17" />
             </div>
             <div id="right">
@@ -91,9 +91,9 @@
                 {/if}
             </div>
         </div>
-        <div id="link">
+        <a href={link} id="link">
             {link}
-        </div>
+        </a>
     </div>
 
     <div id="content_section" class={collapsed ? "hide" : ""}>
@@ -144,12 +144,6 @@
     }
 
     #title {
-        color: rgba(0, 0, 0, 0.7);
-        font-family: Pretendard;
-        font-size: 28px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
         padding-left: 4px;
 
         display: flex;
@@ -165,7 +159,13 @@
     }
 
     #text {
-        /* line-break: anywhere; */
+        color: rgba(0, 0, 0, 0.7);
+        font-family: Pretendard;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-decoration: none;
     }
 
     #link {
@@ -178,6 +178,7 @@
         padding-left: 4px;
 
         line-break: anywhere;
+        text-decoration: none;
     }
 
     #content_section {
