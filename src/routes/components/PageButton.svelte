@@ -41,13 +41,17 @@
      */
     export let collapsed = false;
 
+    export let bookmarked = false;
+
     const on_click = () => {
         if (clickable) {
             clicked = !clicked;
         }
     };
 
-    $: console.log(collapsed);
+    const on_click_bookmark = () => {
+        bookmarked = !bookmarked;
+    };
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -66,7 +70,25 @@
                 <img src="/favicon.svg" alt="" width="17" />
             </div>
             <div id="right">
-                <img src="/bookmark.svg" alt="" width="26" height="38" />
+                {#if bookmarked}
+                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                    <img
+                        src="/bookmark_fill.svg"
+                        alt=""
+                        width="26"
+                        height="38"
+                        on:click={on_click_bookmark}
+                    />
+                {:else}
+                    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+                    <img
+                        src="/bookmark.svg"
+                        alt=""
+                        width="26"
+                        height="38"
+                        on:click={on_click_bookmark}
+                    />
+                {/if}
             </div>
         </div>
         <div id="link">
