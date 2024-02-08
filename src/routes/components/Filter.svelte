@@ -6,6 +6,16 @@
      * @type {string} query
      */
     export let query;
+
+    const sort_items = ["가나다순", "최신순"];
+
+    /** @type {typeof view_selected[]} */
+    const view_items = ["자세히", "간단히"];
+
+    export let sort_selected = sort_items[0];
+
+    /** @type {"간단히" | "자세히"} */
+    export let view_selected = view_items[0];
 </script>
 
 <div id="wrapper">
@@ -14,8 +24,8 @@
             <Search bind:query />
         </div>
         <div id="sort_container">
-            <Sort />
-            <Sort />
+            <Sort options={sort_items} bind:selected={sort_selected} />
+            <Sort options={view_items} bind:selected={view_selected} />
         </div>
     </div>
 </div>

@@ -1,15 +1,25 @@
 <script>
-    let sort_dropdown_visible = false;
-    export let selected = "가나다순";
-    export let options = [
-        "가나다순",
-        "최신순",
-        "인기순",
-        "조회수많은순",
-        "평점높은순",
-    ];
+    import { browser } from "$app/environment";
 
-    function on_click_sort() {
+    if (browser) {
+        document.body.addEventListener("click", (e) => {
+            sort_dropdown_visible = false;
+        });
+    }
+
+    let sort_dropdown_visible = false;
+
+    export let selected = "가나다순";
+    export let options = ["가나다순", "최신순"];
+
+    /**
+     * @description on click sort
+     * @param e {MouseEvent}
+     */
+    function on_click_sort(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
         sort_dropdown_visible = !sort_dropdown_visible;
     }
 
@@ -28,7 +38,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="sort" on:click={() => on_click_sort()}>
+<div id="sort" class="sort" on:click={(e) => on_click_sort(e)}>
     <button id="sortby">{selected}</button>
     <div id="icon_wrapper">
         <img src="/dropdown.svg" alt="" width="8" height="14" />
@@ -77,8 +87,9 @@
         }
 
         > #sort_dropdown {
+            z-index: 2;
             top: 100%;
-            right: 0px;
+            right: -8px;
             position: absolute;
             display: flex;
             flex-direction: column;

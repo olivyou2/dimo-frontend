@@ -35,11 +35,19 @@
      */
     export let clicked = false;
 
+    /**
+     * @description Whether the page is collapsed
+     * @type {boolean}
+     */
+    export let collapsed = false;
+
     const on_click = () => {
         if (clickable) {
             clicked = !clicked;
         }
     };
+
+    $: console.log(collapsed);
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -66,7 +74,7 @@
         </div>
     </div>
 
-    <div id="content_section">
+    <div id="content_section" class={collapsed ? "hide" : ""}>
         <div id="tag_section">
             {#each tags as tag}
                 <div class="tag">
@@ -82,6 +90,9 @@
 </div>
 
 <style lang="scss">
+    .hide {
+        display: none !important;
+    }
     #container {
         display: flex;
         padding: 0px 16px;
@@ -99,7 +110,8 @@
 
     #title_section {
         display: flex;
-        width: 100%;
+
+        width: 240px;
         padding: 32px 4px 28px 4px;
         flex-direction: column;
         justify-content: center;
@@ -148,12 +160,12 @@
 
     #content_section {
         display: flex;
-        width: 240px;
         padding: 28px 0px 32px 0px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 16px;
+        width: 240px;
 
         border-top: 1px solid rgba(0, 0, 0, 0.2);
         padding-left: 4px;
