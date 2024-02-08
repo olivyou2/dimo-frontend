@@ -7,7 +7,7 @@ import { page } from '$app/stores';
  * @returns 
  */
 async function get_pages(category) {
-    const result = await fetch(`${url}/api/place?category=${category}&tags`);
+    const result = await fetch(`${url}/api/place?category=${category}&tags=`);
     const data = await result.json();
 
     /**
@@ -15,6 +15,8 @@ async function get_pages(category) {
      * @type {{category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}[]}
      */
     const data_pages = data.places;
+
+    console.log(data);
     return data_pages.map((page) => {
         return {
             category: page.category.categoryName,
@@ -41,6 +43,9 @@ async function get_tags(category = "") {
      */
     const data = await result.json();
 
+    console.log(result.url)
+    console.log(data);
+
     return data.tags.map(tag => tag.tag);
 }
 
@@ -56,17 +61,26 @@ async function get_categories() {
 
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 export async function load({ url }) {
 
     /**
      * @type {URLSearchParams}
      */
     const params = url.searchParams;
-    const category = params.get("category");
+    let category = params.get("category") || "";
+
+    if (category === "전체") {
+        category = "";
+    }
 
     return {
         pages: await get_pages(category),
-        tags: await get_tags(),
+        tags: await get_tags(category),
         cats: await get_categories(),
         page: params.get("category"),
 

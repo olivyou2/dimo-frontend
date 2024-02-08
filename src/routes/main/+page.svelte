@@ -19,24 +19,23 @@
     /** @type {string} query */
     let sort_selected;
 
+    /** @type {string[]} tag_selected*/
+    let tag_selected = [];
+
     const cat = data.now_cat;
 
     let query = "";
 
     // Query filtering
     $: {
-        [query, sort_selected],
+        [query, sort_selected, tag_selected],
+            console.log(query, cat),
             ((show_sites = sites.filter((site) => {
-                if (!cat) return;
+                if (query === "") return true;
 
-                if (cat === "전체") {
-                    return site.title.includes(query);
-                } else {
-                    return (
-                        site.title.includes(query) && site.tags.includes(cat)
-                    );
-                }
+                return site.title.includes(query) || site.link.includes(query);
             })),
+            console.log(show_sites),
             (show_sites = show_sites.sort((a, b) => {
                 if (sort_selected === "가나다순") {
                     return a.title.localeCompare(b.title);
@@ -45,14 +44,21 @@
                 } else {
                     return 0;
                 }
-            })));
+            })),
+            console.log(show_sites),
+            (show_sites = show_sites.filter((site) => {
+                if (tag_selected.length === 0) return true;
+
+                return tag_selected.every((tag) => site.tags.includes(tag));
+            })),
+            console.log(show_sites));
     }
 </script>
 
 <div id="layout">
     <Header categories={cats} selectedCategory={cat} />
     <Filter bind:query bind:view_selected bind:sort_selected />
-    <Tags {tags} />
+    <Tags {tags} bind:selectedTags={tag_selected} />
 
     <div id="container">
         {#each show_sites as site}

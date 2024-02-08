@@ -2,8 +2,15 @@
     export let activated = false;
     export let tag = "";
 
+    /**
+     * @description on click
+     * @type {(activated: boolean) => void}
+     */
+    export let onClickHandler;
+
     function onClick() {
         activated = !activated;
+        onClickHandler(activated);
     }
 </script>
 
