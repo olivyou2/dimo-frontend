@@ -2,6 +2,7 @@
     import Filter from "../components/Filter.svelte";
     import Header from "../components/Header.svelte";
     import PageButton from "../components/PageButton.svelte";
+    import Tags from "../components/Tags.svelte";
 
     /**
      * @description The title of the page
@@ -77,6 +78,8 @@
         categories={["전체", "폰트", "목업", "소스", "아이콘", "레퍼런스"]}
     />
     <Filter />
+    <Tags />
+
     <div id="container">
         {#each sites as site}
             <PageButton
@@ -93,7 +96,7 @@
     #layout {
         display: flex;
         flex-direction: column;
-        row-gap: 33px;
+        align-items: center;
     }
 
     #container {
@@ -102,5 +105,8 @@
         align-content: flex-start;
         gap: 40px 24px;
         flex-wrap: wrap;
+        width: 100%;
+        max-width: 1224px;
+        margin-top: 30px;
     }
 </style>

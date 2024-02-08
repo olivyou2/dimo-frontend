@@ -20,11 +20,13 @@
         width: 100%;
         display: flex;
         justify-content: center;
+
+        margin-top: 38px;
     }
     #container {
         display: flex;
         width: 100%;
-        max-width: 816px;
+        max-width: 1224px;
         justify-content: space-between;
 
         > #search {

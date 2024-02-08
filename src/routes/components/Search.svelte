@@ -9,13 +9,13 @@
 <style lang="scss">
     #container {
         display: flex;
-        gap: 13px;
+        gap: 20px;
         align-items: center;
 
         > #search {
             color: black;
             font-family: Pretendard;
-            font-size: 13px;
+            font-size: 20px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;

@@ -51,7 +51,15 @@
 >
     <div id="title_section">
         <div id="title">
-            {title}
+            <div id="left">
+                <div id="text">
+                    {title}
+                </div>
+                <img src="/favicon.svg" alt="" />
+            </div>
+            <div id="right">
+                <img src="/bookmark.svg" alt="" />
+            </div>
         </div>
         <div id="link">
             {link}
@@ -76,7 +84,7 @@
 <style lang="scss">
     #container {
         display: flex;
-        padding: 0px 24px;
+        padding: 0px 16px;
         flex-direction: column;
         align-items: flex-start;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
@@ -91,12 +99,13 @@
 
     #title_section {
         display: flex;
-        width: 240px;
+        width: 100%;
         padding: 32px 0px 28px 0px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 8px;
+        max-width: 240px;
     }
 
     #title {
@@ -108,6 +117,17 @@
         line-height: normal;
         padding-left: 4px;
 
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #left {
+        display: flex;
+        gap: 7px;
+    }
+
+    #text {
         line-break: anywhere;
     }
 
