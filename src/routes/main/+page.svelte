@@ -4,73 +4,9 @@
     import PageButton from "../components/PageButton.svelte";
     import Tags from "../components/Tags.svelte";
 
-    /**
-     * @description The title of the page
-     * @type {{title: string, link: string, tags: string[], description: string}[]}
-     */
-    const sites = [];
+    export let data;
 
-    sites.push({
-        title: "title",
-        link: "link",
-        tags: ["tag1", "tag2"],
-        description: "description",
-    });
-
-    sites.push({
-        title: "title22222222222222222222222222222222",
-        link: "link",
-        tags: ["tag1", "tag2"],
-        description: "description",
-    });
-
-    sites.push({
-        title: "title",
-        link: "link22222222222222222222222222222222222222222",
-        tags: ["tag1", "tag2"],
-        description: "description",
-    });
-
-    sites.push({
-        title: "title",
-        link: "link",
-        tags: [
-            "tag1",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-        ],
-        description: "description",
-    });
-
-    sites.push({
-        title: "title",
-        link: "link",
-        tags: [
-            "tag1",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-            "tag2",
-        ],
-        description:
-            "국내에서 가장 널리 사용되는 한글 무료 폰트 모음 사이트. 국내에서 가장 널리 사용되는 한글 무료 폰트 모음 사이트.",
-    });
+    const sites = data.pages;
 </script>
 
 <div id="layout">

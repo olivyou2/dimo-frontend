@@ -34,6 +34,9 @@
         align-items: center;
         gap: 14px;
 
+        user-select: none;
+        cursor: pointer;
+
         &.activated {
             background: rgba(0, 0, 0, 0.8);
             color: white;

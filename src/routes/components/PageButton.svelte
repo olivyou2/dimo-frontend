@@ -55,7 +55,7 @@
                 <div id="text">
                     {title}
                 </div>
-                <img src="/favicon.svg" alt="" />
+                <img src="/favicon.svg" alt="" width="17" />
             </div>
             <div id="right">
                 <img src="/bookmark.svg" alt="" />
@@ -100,12 +100,13 @@
     #title_section {
         display: flex;
         width: 100%;
-        padding: 32px 0px 28px 0px;
+        padding: 32px 4px 28px 4px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
         gap: 8px;
         max-width: 240px;
+        box-sizing: border-box;
     }
 
     #title {
@@ -120,15 +121,17 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        align-items: center;
     }
 
     #left {
         display: flex;
         gap: 7px;
+        height: 33px;
     }
 
     #text {
-        line-break: anywhere;
+        /* line-break: anywhere; */
     }
 
     #link {
