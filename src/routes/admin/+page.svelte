@@ -2,26 +2,9 @@
 <script>
   const url = import.meta.env.VITE_BACKEND_URL;
 
-  async function get_pages() {
-    const result = await fetch(`${url}/api/place?category=&tags`);
-    const data = await result.json();
+  export let data;
 
-    /**
-     * @description The pages database
-     * @type {{category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}[]}
-     */
-    const data_pages = data.places;
-    pages = data_pages.map((page) => {
-      return {
-        category: page.category.categoryName,
-        title: page.title,
-        link: page.link,
-        tags: page.tags.map((tag) => tag.tag),
-        description: page.content,
-        id: page.id,
-      };
-    });
-  }
+  const pages = data.pages;
 
   /**
    *
@@ -45,13 +28,6 @@
     }
   }
 
-  get_pages();
-
-  /**
-   * @description The pages database
-   * @type {{category: string, title: string, link: string, tags: string[], description: string, id: number}[]}
-   */
-  let pages = [];
 
   function on_click_add() {
     location.href = "/admin/modify?usage=create";

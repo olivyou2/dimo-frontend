@@ -4,18 +4,13 @@
     const url = import.meta.env.VITE_BACKEND_URL;
     import { browser } from "$app/environment";
 
+    export let data = {categories: []};
+
     /**
      * @description The pages database
      * @type {{categoryName: string, id: number}[]}
      */
-    let categories = [];
-
-    async function get_pages() {
-        const result = await fetch(`${url}/api/place/cat/`);
-        const data = await result.json();
-
-        categories = data.categories;
-    }
+    let categories = data.categories;
 
     /**
      *
@@ -48,8 +43,6 @@
             alert("추가에 실패했습니다.");
         }
     }
-
-    get_pages();
 
     let submit_text = "";
     let page_idx = -1;
