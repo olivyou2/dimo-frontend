@@ -1,16 +1,25 @@
 <script>
     import Tag from "./Tag.svelte";
+    import emblaCarouselSvelte from "embla-carousel-svelte";
 
-    export let tags = ["tag1", "tag2", "tag3"];
+    /**
+     * @type {string[]}
+     */
+    export let tags = [];
 </script>
 
-<div id="container">
-    {#each tags as tag}
-        <Tag {tag} />
-    {/each}
+<div id="wrapper" use:emblaCarouselSvelte>
+    <div id="container">
+        {#each tags as tag}
+            <Tag {tag} />
+        {/each}
+    </div>
 </div>
 
 <style lang="scss">
+    #wrapper {
+        overflow: visible;
+    }
     #container {
         margin-top: 42px;
         display: flex;
