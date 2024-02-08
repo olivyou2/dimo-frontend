@@ -12,19 +12,18 @@ async function get_pages(category) {
 
     /**
      * @description The pages database
-     * @type {{category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}[]}
+     * @type {{categories: {id: number, categoryName: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
      */
     const data_pages = data.places;
 
-    console.log(data);
     return data_pages.map((page) => {
         return {
-            category: page.category.categoryName,
-            title: page.title,
-            link: page.link,
-            tags: page.tags.map((tag) => tag.tag),
-            description: page.content,
-            id: page.id,
+            category: page.categories[0]?.categoryName || "",
+            title: page.place.title,
+            link: page.place.link,
+            tags: page.place.tags.map((tag) => tag.tag),
+            description: page.place.content,
+            id: page.place.id,
         };
     });
 }
@@ -42,9 +41,6 @@ async function get_tags(category = "") {
      * @type {{tags: {tag: string, id: number}[]}}
      */
     const data = await result.json();
-
-    console.log(result.url)
-    console.log(data);
 
     return data.tags.map(tag => tag.tag);
 }

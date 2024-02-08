@@ -5,18 +5,26 @@ async function get_pages() {
     const data = await result.json();
 
     /**
-     * @description The pages database
-     * @type {{category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}[]}
-     */
+    * @description The pages database
+    * @type {{categories: {id: number, categoryName: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
+    */
+
     const data_pages = data.places;
+
     return data_pages.map((page) => {
+        let categories = "";
+
+        for (let i = 0; i < page.categories.length; i++) {
+            categories += page.categories[i].categoryName + (i === page.categories.length - 1 ? "" : ", ");
+        }
+
         return {
-            category: page.category.categoryName,
-            title: page.title,
-            link: page.link,
-            tags: page.tags.map((tag) => tag.tag),
-            description: page.content,
-            id: page.id,
+            category: categories,
+            title: page.place.title,
+            link: page.place.link,
+            tags: page.place.tags.map((tag) => tag.tag),
+            description: page.place.content,
+            id: page.place.id,
         };
     });
 }

@@ -4,7 +4,7 @@
     const url = import.meta.env.VITE_BACKEND_URL;
     import { browser } from "$app/environment";
 
-    export let data = {categories: []};
+    export let data = { categories: [] };
 
     /**
      * @description The pages database
@@ -39,7 +39,6 @@
             alert("추가되었습니다.");
             location.href = "/admin";
         } else {
-            console.log(await result.json());
             alert("추가에 실패했습니다.");
         }
     }
