@@ -1,4 +1,4 @@
-FROM node:21-alpine3.18
+FROM node:latest
 
 ADD . /app
 
