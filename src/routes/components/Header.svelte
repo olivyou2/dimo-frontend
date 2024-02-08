@@ -24,7 +24,7 @@
 
         // Change query parameter "category" to selectedCategory.
 
-        location.href = `/main?category=${category}`;
+        location.href = `/?category=${category}`;
     }
 
     categories = ["전체", ...categories];
