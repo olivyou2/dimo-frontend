@@ -58,7 +58,7 @@
                 <img src="/favicon.svg" alt="" width="17" />
             </div>
             <div id="right">
-                <img src="/bookmark.svg" alt="" />
+                <img src="/bookmark.svg" alt="" width="26" height="38" />
             </div>
         </div>
         <div id="link">

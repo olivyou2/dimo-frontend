@@ -5,7 +5,11 @@
      */
     export let categories;
 
-    let selectedCategory = categories[0];
+    /**
+     * @description The selected category
+     * @type {string}
+     */
+    export let selectedCategory;
 
     /**
      * @description The function that is called when a category is clicked
@@ -13,11 +17,17 @@
      */
     function onClickCategory(category) {
         selectedCategory = category;
+
+        // Change query parameter "category" to selectedCategory.
+
+        location.href = `/main?category=${category}`;
     }
+
+    categories = ["전체", ...categories];
 </script>
 
 <div id="container">
-    <img src="/logo.svg" alt="" />
+    <img src="/logo.svg" alt="" width="147" height="28" />
 
     <div id="categories">
         {#each categories as category}
@@ -30,7 +40,7 @@
         {/each}
     </div>
 
-    <img src="/icon.svg" alt="" />
+    <img src="/icon.svg" alt="" width="51" height="50" />
 </div>
 
 <style lang="scss">

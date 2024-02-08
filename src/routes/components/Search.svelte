@@ -2,7 +2,7 @@
 </script>
 
 <div id="container">
-    <img src="/search.svg" alt="" />
+    <img src="/search.svg" alt="" width="22" height="22" />
     <input type="text" id="search" placeholder="페이지 이름 검색" />
 </div>
 

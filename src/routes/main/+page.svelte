@@ -7,14 +7,16 @@
     export let data;
 
     const sites = data.pages;
+    const tags = data.tags;
+    const cats = data.cats;
+
+    const cat = data.now_cat;
 </script>
 
 <div id="layout">
-    <Header
-        categories={["전체", "폰트", "목업", "소스", "아이콘", "레퍼런스"]}
-    />
+    <Header categories={cats} selectedCategory={cat} />
     <Filter />
-    <Tags />
+    <Tags {tags} />
 
     <div id="container">
         {#each sites as site}

@@ -10,7 +10,12 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="tag {activated ? 'activated' : ''}" on:click={onClick}>
-    <img src="/tag/{activated ? 'remove.svg' : 'add.svg'}" alt="" />
+    <img
+        src="/tag/{activated ? 'remove.svg' : 'add.svg'}"
+        alt=""
+        width="12"
+        height="12"
+    />
     {tag}
 </div>
 
@@ -36,6 +41,7 @@
 
         user-select: none;
         cursor: pointer;
+        white-space: nowrap;
 
         &.activated {
             background: rgba(0, 0, 0, 0.8);

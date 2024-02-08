@@ -31,7 +31,7 @@
 <div id="sort" on:click={() => on_click_sort()}>
     <button id="sortby">{selected}</button>
     <div id="icon_wrapper">
-        <img src="/dropdown.svg" alt="" />
+        <img src="/dropdown.svg" alt="" width="8" height="14" />
     </div>
 
     {#if sort_dropdown_visible}
