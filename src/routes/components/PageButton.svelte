@@ -78,7 +78,7 @@
         <div id="tag_section">
             {#each tags as tag}
                 <div class="tag">
-                    <span>#</span>
+                    <span>:</span>
                     <span>{tag}</span>
                 </div>
             {/each}
