@@ -72,9 +72,10 @@ export async function load({ url }) {
      * @type {URLSearchParams}
      */
     const params = url.searchParams;
-    let category = params.get("category") || "";
+    let categoryParam = params.get("category") || "";
+    let category = categoryParam;
 
-    if (category === "전체") {
+    if (categoryParam === "전체") {
         category = "";
     }
 
@@ -84,6 +85,6 @@ export async function load({ url }) {
         cats: await get_categories(),
         page: params.get("category"),
 
-        now_cat: category,
+        now_cat: categoryParam,
     }
 }

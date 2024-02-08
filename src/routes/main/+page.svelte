@@ -55,8 +55,8 @@
     }
 </script>
 
+<Header categories={cats} selectedCategory={cat} />
 <div id="layout">
-    <Header categories={cats} selectedCategory={cat} />
     <Filter bind:query bind:view_selected bind:sort_selected />
     <Tags {tags} bind:selectedTags={tag_selected} />
 
@@ -78,6 +78,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0px 20px;
     }
 
     #container {

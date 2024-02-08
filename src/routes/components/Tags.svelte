@@ -42,11 +42,14 @@
 <style lang="scss">
     #wrapper {
         overflow: visible;
+        width: 100%;
+        max-width: 1224px;
     }
     #container {
         margin-top: 42px;
         display: flex;
         flex-direction: row;
+        justify-content: flex-start;
         gap: 16px;
         width: 100%;
         max-width: 1224px;

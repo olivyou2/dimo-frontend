@@ -1,4 +1,8 @@
 <script>
+    // @ts-nocheck
+
+    import emblaCarouselSvelte from "embla-carousel-svelte";
+
     /**
      * @description The categories of the header
      * @type {string[]}
@@ -29,15 +33,20 @@
 <div id="container">
     <img src="/logo.svg" alt="" width="147" height="28" />
 
-    <div id="categories">
-        {#each categories as category}
-            <button
-                on:click={() => onClickCategory(category)}
-                class="category {category === selectedCategory
-                    ? 'activated'
-                    : ''}">{category}</button
-            >
-        {/each}
+    <div
+        id="category_wrapper"
+        use:emblaCarouselSvelte={{ options: { dragFree: true } }}
+    >
+        <div id="categories">
+            {#each categories as category}
+                <button
+                    on:click={() => onClickCategory(category)}
+                    class="category {category === selectedCategory
+                        ? 'activated'
+                        : ''}">{category}</button
+                >
+            {/each}
+        </div>
     </div>
 
     <img src="/icon.svg" alt="" width="51" height="50" />
@@ -60,28 +69,36 @@
         background-color: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
-        > #categories {
+        > #category_wrapper {
+            flex: 1;
             display: flex;
-            gap: 40px;
-            > .category {
-                color: rgba(0, 0, 0, 0.5);
-                font-family: Pretendard;
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-                text-decoration: none;
+            justify-content: center;
+            overflow: hidden;
+            > #categories {
+                display: flex;
+                gap: 40px;
+                > .category {
+                    color: rgba(0, 0, 0, 0.5);
+                    font-family: Pretendard;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-decoration: none;
 
-                background: none;
-                border: none;
-                padding: 0px;
+                    background: none;
+                    border: none;
+                    padding: 0px;
 
-                cursor: pointer;
-            }
+                    cursor: pointer;
+                    white-space: nowrap;
+                    user-select: none;
+                }
 
-            > .category.activated {
-                color: rgba(0, 0, 0, 0.8);
-                font-weight: 700;
+                > .category.activated {
+                    color: rgba(0, 0, 0, 0.8);
+                    font-weight: 700;
+                }
             }
         }
     }
