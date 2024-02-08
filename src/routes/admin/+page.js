@@ -15,7 +15,7 @@ async function get_pages() {
         let categories = "";
 
         for (let i = 0; i < page.categories.length; i++) {
-            categories += page.categories[i].categoryName + (i === page.categories.length - 1 ? "" : ", ");
+            categories += page.categories[i].categoryName + (i === page.categories.length - 1 ? "" : " | ");
         }
 
         return {
