@@ -1,12 +1,17 @@
 <script>
     import Search from "./Search.svelte";
     import Sort from "./Sort.svelte";
+
+    /**
+     * @type {string} query
+     */
+    export let query;
 </script>
 
 <div id="wrapper">
     <div id="container">
         <div id="search">
-            <Search />
+            <Search bind:query />
         </div>
         <div id="sort_container">
             <Sort />

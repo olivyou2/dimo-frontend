@@ -7,7 +7,7 @@
 
     /**
      * @description The selected category
-     * @type {string}
+     * @type {string | null}
      */
     export let selectedCategory;
 

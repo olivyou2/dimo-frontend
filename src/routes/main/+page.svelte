@@ -10,16 +10,38 @@
     const tags = data.tags;
     const cats = data.cats;
 
+    /**
+     * @type {typeof sites} query
+     */
+    let show_sites = [];
+
     const cat = data.now_cat;
+
+    let query = "";
+
+    $: {
+        [query],
+            (show_sites = sites.filter((site) => {
+                if (!cat) return;
+
+                if (cat === "전체") {
+                    return site.title.includes(query);
+                } else {
+                    return (
+                        site.title.includes(query) && site.tags.includes(cat)
+                    );
+                }
+            }));
+    }
 </script>
 
 <div id="layout">
     <Header categories={cats} selectedCategory={cat} />
-    <Filter />
+    <Filter bind:query />
     <Tags {tags} />
 
     <div id="container">
-        {#each sites as site}
+        {#each show_sites as site}
             <PageButton
                 title={site.title}
                 link={site.link}
