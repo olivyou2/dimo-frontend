@@ -1,6 +1,18 @@
 import { writable } from 'svelte/store';
 
-export const loginState = writable({ keep: false, userId: -1 });
+const localState = localStorage.getItem('loginState');
+const initialState = { keep: false, userId: -1 };
+
+/**
+ * @type {import('svelte/store').Writable<typeof initialState>}
+ */
+export const loginState = writable(
+    JSON.parse(localStorage.getItem('loginState') || JSON.stringify(initialState))
+);
+
+function saveToLocal() {
+    localStorage.setItem('loginState', JSON.stringify(loginState));
+}
 
 /**
  * 
@@ -9,6 +21,7 @@ export const loginState = writable({ keep: false, userId: -1 });
  */
 export function setLoginState(keep, userId) {
     loginState.set({ keep, userId });
+    saveToLocal();
 }
 
 /**
@@ -20,6 +33,7 @@ export function setKeep(keep) {
         state.keep = keep;
         return state;
     });
+    saveToLocal();
 }
 
 /**
@@ -31,8 +45,10 @@ export function setUserId(userId) {
         state.userId = userId;
         return state;
     });
+    saveToLocal();
 }
 
 export function unsetLoginState() {
     loginState.set({ keep: false, userId: -1 });
+    saveToLocal();
 }
