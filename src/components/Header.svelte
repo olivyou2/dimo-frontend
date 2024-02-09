@@ -1,6 +1,8 @@
 <script>
     // @ts-nocheck
 
+    import { userState } from "../states/userState.js";
+
     import emblaCarouselSvelte from "embla-carousel-svelte";
 
     /**
@@ -34,8 +36,19 @@
     }
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
-    <img src="/logo.svg" alt="" width="147" height="28" />
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <img
+        id="logo"
+        src="/logo.svg"
+        alt=""
+        width="147"
+        height="28"
+        on:click={() => {
+            location.href = "/";
+        }}
+    />
 
     <div
         id="category_wrapper"
@@ -53,7 +66,19 @@
         </div>
     </div>
 
-    <img src="/icon.svg" alt="" width="51" height="50" />
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+        id="icon"
+        on:click={() => {
+            location.href = "/login";
+        }}
+    >
+        {#if $userState.profileUrl}
+            <img src={$userState.profileUrl} alt="" width="50" height="50" />
+        {/if}
+        <!-- <img src="/icon.svg" alt="" width="50" height="50" /> -->
+    </div>
 </div>
 
 <style lang="scss">
@@ -72,6 +97,10 @@
 
         background-color: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+        > #logo {
+            cursor: pointer;
+        }
 
         > #category_wrapper {
             flex: 1;
@@ -104,6 +133,15 @@
                     font-weight: 700;
                 }
             }
+        }
+
+        > #icon {
+            border-radius: 25px;
+            width: 50px;
+            height: 50px;
+            outline: 1px solid rgba(0, 0, 0, 0.2);
+            overflow: clip;
+            cursor: pointer;
         }
     }
 </style>

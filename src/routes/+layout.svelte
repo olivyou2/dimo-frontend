@@ -1,5 +1,26 @@
 <script>
-    import { loginState } from "../states/loginState.js";
+    import { browser } from "$app/environment";
+    import {
+        loginState,
+        saveToLocal,
+        unsetLoginState,
+    } from "../states/loginState.js";
+    import { userState } from "../states/userState.js";
+
+    if (browser) {
+        const localState = localStorage.getItem("loginState");
+
+        if (localState) {
+            loginState.set(JSON.parse(localState));
+
+            if (!$loginState.keep) {
+                unsetLoginState();
+            }
+        } else {
+            saveToLocal($loginState);
+        }
+    }
+
     const url = import.meta.env.VITE_BACKEND_URL;
 
     const userid = $loginState.userId;
@@ -13,7 +34,12 @@
         });
 
         const data = await result.json();
-        console.log(data);
+
+        /**
+         * @type {{profileUrl: string}}
+         */
+        const user = data.user;
+        userState.set({ profileUrl: user.profileUrl });
     };
 
     if (userid !== -1) {
