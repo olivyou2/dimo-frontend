@@ -83,21 +83,14 @@
 
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div
-        id="icon"
-        on:click={() => {
-            if (profileUrl) {
-                location.href = "/mypage";
-            } else {
-                location.href = "/login";
-            }
-        }}
-    >
-        {#if profileUrl}
-            <img src={profileUrl} alt="" width="50" height="50" />
-        {/if}
-        <!-- <img src="/icon.svg" alt="" width="50" height="50" /> -->
-    </div>
+    <img id="icon" src={profileUrl} alt="" on:click={() => {
+        if (profileUrl) {
+            location.href = "/mypage";
+        } else {
+            location.href = "/login";
+        }
+    }}/>
+    <!-- <img src="/icon.svg" alt="" width="50" height="50" /> -->
 </div>
 
 <style lang="scss">
