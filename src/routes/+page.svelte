@@ -72,7 +72,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0px 20px;
+        padding: 0px 40px;
     }
 
     #container {
@@ -84,5 +84,16 @@
         width: 100%;
         max-width: 1224px;
         margin-top: 30px;
+    }
+
+    @media (max-width: 800px) {
+        #layout {
+            padding: 0px 20px;
+        }
+
+        #container {
+            justify-content: center;
+            row-gap: 20px;
+        }
     }
 </style>

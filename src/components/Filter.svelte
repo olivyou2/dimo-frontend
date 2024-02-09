@@ -52,4 +52,10 @@
             gap: 21px;
         }
     }
+
+    @media (max-width: 800px) {
+        #wrapper {
+            margin-top: 20px;
+        }
+    }
 </style>

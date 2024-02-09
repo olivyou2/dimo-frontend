@@ -54,6 +54,16 @@
             location.href = "/";
         }}
     />
+    <img
+        id="logo_mobile"
+        src="/logo_mobile.svg"
+        alt=""
+        width="28"
+        height="17"
+        on:click={() => {
+            location.href = "/";
+        }}
+    />
 
     <div
         id="category_wrapper"
@@ -111,9 +121,15 @@
             cursor: pointer;
         }
 
+        > #logo_mobile {
+            cursor: pointer;
+
+            display: none;
+        }
+
         > #category_wrapper {
-                padding-left: 20px;
-                padding-right: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
             flex: 1;
             padding-top: 5px;
             overflow: hidden;
@@ -153,6 +169,31 @@
             outline: 1px solid rgba(0, 0, 0, 0.2);
             overflow: clip;
             cursor: pointer;
+        }
+    }
+
+    @media (max-width: 800px) {
+        #container {
+            height: 56px;
+            width: calc(100% - 42px);
+            padding-left: 20px;
+            padding-right: 18px;
+            #logo {
+                display: none;
+            }
+
+            #logo_mobile {
+                display: block;
+            }
+
+            #icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .category {
+                font-size: 16px !important;
+            }
         }
     }
 </style>

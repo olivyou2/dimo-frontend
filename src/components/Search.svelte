@@ -6,7 +6,7 @@
 </script>
 
 <div id="container">
-    <img src="/search.svg" alt="" width="22" height="22" />
+    <img id="search_icon" src="/search.svg" alt="" width="22" height="22" />
     <input
         type="text"
         id="search"
@@ -39,6 +39,19 @@
             &::placeholder {
                 color: rgba(0, 0, 0, 0.3);
             }
+        }
+    }
+
+    @media (max-width: 800px) {
+        #container{
+            gap: 10px;
+        }
+        #search_icon {
+            width: 14px;
+            height: 14px;
+        }
+        #search {
+            font-size: 14px !important;
         }
     }
 </style>

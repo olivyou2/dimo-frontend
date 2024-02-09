@@ -41,10 +41,11 @@
 
 <style lang="scss">
     #wrapper {
-        overflow: visible;
+        overflow: hidden;
         width: 100%;
         max-width: 1224px;
     }
+    
     #container {
         margin-top: 42px;
         display: flex;
@@ -53,5 +54,13 @@
         gap: 16px;
         width: 100%;
         max-width: 1224px;
+    }
+
+
+    @media (max-width: 800px) {
+        #container {
+            margin-top: 20px;
+            gap: 10px;
+        }
     }
 </style>

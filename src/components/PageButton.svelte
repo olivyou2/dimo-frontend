@@ -246,4 +246,17 @@
     #bookmark {
         cursor: pointer;
     }
+
+
+    @media (max-width: 800px) {
+        #title_section {
+            width: calc(100vw - 72px);
+            max-width: calc(100vw - 72px);
+        }
+
+        #content_section {
+            width: calc(100vw - 72px);
+            max-width: calc(100vw - 72px);
+        }
+    }
 </style>

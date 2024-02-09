@@ -20,6 +20,7 @@
     <img
         src="/tag/{activated ? 'remove.svg' : 'add.svg'}"
         alt=""
+        id="indicator"
         width="12"
         height="12"
     />
@@ -53,6 +54,21 @@
         &.activated {
             background: rgba(0, 0, 0, 0.8);
             color: white;
+        }
+    }
+
+
+
+    @media (max-width: 800px) {
+        .tag {
+            padding: 4px 8px;
+            font-size: 14px;
+            gap: 8px;
+        }
+
+        #indicator {
+            width: 8px;
+            height: 8px;
         }
     }
 </style>

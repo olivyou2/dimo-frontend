@@ -60,7 +60,7 @@
 <style lang="scss">
     #sort {
         display: flex;
-        column-gap: 6px;
+        // column-gap: 6px;
         align-items: center;
         user-select: none;
         cursor: pointer;
@@ -116,4 +116,11 @@
             }
         }
     }
+
+    @media (max-width: 800px) {
+        #sortby {
+            font-size: 12px !important;
+        }
+    }
+
 </style>
