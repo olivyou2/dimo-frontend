@@ -1,5 +1,6 @@
 const url = import.meta.env.VITE_BACKEND_URL;
 import { page } from '$app/stores';
+import Tags from './components/Tags.svelte';
 
 /**
  * 
@@ -12,16 +13,17 @@ async function get_pages(category) {
 
     /**
      * @description The pages database
-     * @type {{categories: {id: number, categoryName: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
+     * @type {{categories: {id: number, categoryName: string}[], tags: {id: number, tag: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
      */
     const data_pages = data.places;
 
     return data_pages.map((page) => {
+        let tags = page.tags.map((tag) => tag.tag);
         return {
             category: page.categories[0]?.categoryName || "",
             title: page.place.title,
             link: page.place.link,
-            tags: page.place.tags.map((tag) => tag.tag),
+            tags: tags,
             description: page.place.content,
             id: page.place.id,
         };
