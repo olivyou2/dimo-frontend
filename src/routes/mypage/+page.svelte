@@ -27,6 +27,7 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        
         > #title {
             display: flex;
             justify-content: center;

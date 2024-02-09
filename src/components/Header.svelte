@@ -57,7 +57,7 @@
 
     <div
         id="category_wrapper"
-        use:emblaCarouselSvelte={{ options: { dragFree: true } }}
+        use:emblaCarouselSvelte={{ options: { dragFree: true, watchResize: true } }}
     >
         <div id="categories">
             {#each categories as category}
@@ -112,13 +112,15 @@
         }
 
         > #category_wrapper {
+                padding-left: 20px;
+                padding-right: 20px;
             flex: 1;
-            display: flex;
-            justify-content: center;
+            padding-top: 5px;
             overflow: hidden;
             > #categories {
                 display: flex;
                 gap: 40px;
+                // justify-content: center;
                 > .category {
                     color: rgba(0, 0, 0, 0.5);
                     font-family: Pretendard;
