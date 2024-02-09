@@ -78,6 +78,7 @@
                         width="26"
                         height="38"
                         on:click={on_click_bookmark}
+                        id="bookmark"
                     />
                 {:else}
                     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -87,6 +88,7 @@
                         width="26"
                         height="38"
                         on:click={on_click_bookmark}
+                        id="bookmark"
                     />
                 {/if}
             </div>
@@ -239,5 +241,9 @@
         #content_section {
             border-top: 1px solid white;
         }
+    }
+
+    #bookmark {
+        cursor: pointer;
     }
 </style>
