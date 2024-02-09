@@ -1,6 +1,6 @@
 <script lang="ts">
     import Header from "../../components/Header.svelte";
-    import { setKeep } from "../../states/loginState";
+    import { saveToLocal, setKeep, loginState } from "../../states/loginState";
 
     export let data;
 
@@ -16,7 +16,8 @@
     function on_click_keep() {
         checked = !checked;
 
-        setKeep(checked);
+        // setKeep(checked);
+        saveToLocal($loginState);
     }
 </script>
 
@@ -32,18 +33,18 @@
             </button>
         </div>
 
-        <div id="keep_login_row">
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div id="chkbox" on:click={on_click_keep}>
-                {#if checked}
-                    <img src="/checked.svg" alt="" id="chk" />
-                {/if}
-            </div>
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div id="label" on:click={on_click_keep}>로그인 상태 유지</div>
-        </div>
+        <!-- <div id="keep_login_row"> -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <!-- <div id="chkbox" on:click={on_click_keep}> -->
+        <!-- {#if checked} -->
+        <!-- <img src="/checked.svg" alt="" id="chk" /> -->
+        <!-- {/if} -->
+        <!-- </div> -->
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <!-- <div id="label" on:click={on_click_keep}>로그인 상태 유지</div> -->
+        <!-- </div> -->
     </div>
 </div>
 

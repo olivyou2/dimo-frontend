@@ -12,10 +12,6 @@
 
         if (localState) {
             loginState.set(JSON.parse(localState));
-
-            if (!$loginState.keep) {
-                unsetLoginState();
-            }
         } else {
             saveToLocal($loginState);
         }
