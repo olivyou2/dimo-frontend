@@ -15,6 +15,15 @@
      */
     export let profileUrl;
 
+    if (!profileUrl) {
+        profileUrl = "/icon.svg";
+    }
+
+    /**
+     * @type {boolean}
+     */
+    export let isLogin;
+
     /**
      * @description The selected category
      * @type {string | null}
@@ -38,6 +47,7 @@
     if (selectedCategory === "") {
         selectedCategory = "전체";
     }
+
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -80,17 +90,14 @@
             {/each}
         </div>
     </div>
-
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img id="icon" src={profileUrl} alt="" on:click={() => {
-        if (profileUrl) {
+        if (isLogin) {
             location.href = "/mypage";
         } else {
             location.href = "/login";
         }
     }}/>
-    <!-- <img src="/icon.svg" alt="" width="50" height="50" /> -->
 </div>
 
 <style lang="scss">

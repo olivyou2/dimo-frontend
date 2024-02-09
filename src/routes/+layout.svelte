@@ -5,6 +5,7 @@
 
     const cats = data.cats;
     const user = data.user;
+    const isLogin = user !== null;
 
     const selectedCategory = data.selectedCategory;
 
@@ -16,7 +17,7 @@
 </script>
 
 <div id="body">
-    <Header categories={cats} selectedCategory={selectedCategory} profileUrl={profileUrl}/>
+    <Header categories={cats} selectedCategory={selectedCategory} profileUrl={profileUrl} isLogin={isLogin}/>
     <slot />
 </div>
 
