@@ -1,14 +1,4 @@
-<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <rect width="17" height="17" fill="url(#pattern0)"/>
-    <rect width="17" height="17" fill="url(#pattern1)"/>
-    <defs>
-    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-    <use xlink:href="#image0_133_3712" transform="scale(0.03125)"/>
-    </pattern>
-    <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-    <use xlink:href="#image0_133_3712" transform="scale(0.03125)"/>
-    </pattern>
-    <image id="image0_133_3712" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcElEQVRYCa2Xv2sUQRTH55K722n9B2zsRK/yDzCNFiLGJikOLFJGOAQLFQRTqMVho7WFYGEtFhZqpaAgSo4jU9w/kFIFO0Oeft7O2+zu7V52zywMM/v2zXvfeT9nnWvwnD/tTjnnBs65defc6N+WHefcOA7W0IaRp4HE5izju1vdg5ePevLpRV9mr/vy82NfDr71RSZeB2tofIPn2Z2enDvTeRdBN9dU5uz13Iv9D4lI8CJ7icg0yZSq8l0vYiOCUZ7Iv3l55bAss9U7J1HlpqTNPE3UItEtrfQa8/r3V7301G0U53mniWBFE9h2Hmd+zgttsw5eY6GtYuUniJY2v4EMXm5c7YalAFy7uPo1A0CAEYQm2OY6un0PXrY3VveXAsBGBYCSXS8Pb/YOCyAmXlNxjm7KmYOXe1vdH0sBIPcNAPntnBOZ5dLuKMqL9BIA5CwFQE9GPk+8UAvmANTRTwpAZgEEThOtdBI6Uh5UwLmiZCCCl6YWWNu4tPIr1nO1GL7LByEpiVXu37oiD25fF2a1EtXRFJbnGAO5PlLtDQ24WRpoxpEFIUInXihKb99/kfzz+Mlz+f25xgIE78wL5Zg+AliTPTebv6Ov6WyukIaACB0VglKAML952q1Oz+DVZdubqwocIDSp2DnpmGsFEJmy4FUo7xfOdv5kLjDThk7W9bRKlmtDDEz8Th9R6+CiWRoLHJCMwpp8j4AUyygLJjaE1OTa2Uy5zZjWhtHyM9+se7LeS1QhblA6tAgqWiW1BubSPIcBgYuCK6+wvDYF8SCcOJNd5t0rNqsBjNr/MS2nKG847n3i1eycjBMjLzt51d6aXjGihZKWrUFEAPhYD2KuqFIObVGpLqRhnYAqurnAXFnFY7RQTP1CZiwNwIQ3mRdZgD7e2gVNlOZ5amJALXEiF5K8sqp18AuvbGPNgia+rBJ+HO2onfOfUfkMNIW4A5DTAKkCY3R48qPMyzdL75BeZppc24eUVfKatCo3HsoxhcbKK3wM0rDAO02yHxb6DgFOqrf5caFcDgu1IQqN9RwzwsPg920EkKyaLgq2SuPXEAuZMU1r/FxnS/euY5XMZcELDa5GbHNylhn4dzGAoQKw2Dkm2psjcG4H/5IddkOq8eOAdqstezdt8f/zi1YGiL+5tDDwd93DN+OrTTU2/wWoxqdTNR4SCwAAAABJRU5ErkJggg=="/>
-    </defs>
+<svg width="129" height="129" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30.6886" y="45.1793" width="67.6226" height="36.2264" rx="18.1132" stroke="black" stroke-opacity="0.8" stroke-width="12.0755"/>
     </svg>
     
