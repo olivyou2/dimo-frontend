@@ -1,6 +1,6 @@
 const url = import.meta.env.VITE_BACKEND_URL;
 import { page } from '$app/stores';
-import Tags from './components/Tags.svelte';
+import Tags from '../components/Tags.svelte';
 
 /**
  * 

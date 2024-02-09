@@ -1,8 +1,8 @@
 <script>
-    import Filter from "./components/Filter.svelte";
-    import Header from "./components/Header.svelte";
-    import PageButton from "./components/PageButton.svelte";
-    import Tags from "./components/Tags.svelte";
+    import Filter from "../components/Filter.svelte";
+    import Header from "../components/Header.svelte";
+    import PageButton from "../components/PageButton.svelte";
+    import Tags from "../components/Tags.svelte";
 
     export let data;
 
