@@ -13,9 +13,8 @@ export async function load({ url }) {
     let userId = params.get("userId");
 
     if (!userId) {
-        location.href = "/login";
-        return;
+        return { login: false, href: "/login" };
     }
 
-    localStorage.setItem("userId", userId);
+    return { userId, login: true, href: "/" };
 }
