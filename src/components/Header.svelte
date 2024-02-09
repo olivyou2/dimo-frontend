@@ -71,7 +71,11 @@
     <div
         id="icon"
         on:click={() => {
-            location.href = "/login";
+            if ($userState.profileUrl) {
+                location.href = "/mypage";
+            } else {
+                location.href = "/login";
+            }
         }}
     >
         {#if $userState.profileUrl}
