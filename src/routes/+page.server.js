@@ -1,6 +1,4 @@
 const url = import.meta.env.VITE_BACKEND_URL;
-import { page } from '$app/stores';
-import Tags from '../components/Tags.svelte';
 
 /**
  * 
@@ -47,18 +45,6 @@ async function get_tags(category = "") {
     return data.tags.map(tag => tag.tag);
 }
 
-async function get_categories() {
-    const result = await fetch(`${url}/api/place/cat/`);
-
-    /**
-     * @description The categories database
-     * @type {{categories: {categoryName: string, id: number}[]}}
-     */
-    const data = await result.json();
-    return data.categories.map(category => category.categoryName);
-
-}
-
 /**
  * 
  * @param {*} param0 
@@ -80,7 +66,6 @@ export async function load({ url }) {
     return {
         pages: await get_pages(category),
         tags: await get_tags(category),
-        cats: await get_categories(),
         page: params.get("category"),
 
         now_cat: categoryParam,

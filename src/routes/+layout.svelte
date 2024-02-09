@@ -1,50 +1,20 @@
-<script>
-    import { browser } from "$app/environment";
-    import {
-        loginState,
-        saveToLocal,
-        unsetLoginState,
-    } from "../states/loginState.js";
-    import { userState } from "../states/userState.js";
+<script lang="ts">
+    import Header from '../components/Header.svelte';
 
-    if (browser) {
-        const localState = localStorage.getItem("loginState");
+    export let data;
 
-        if (localState) {
-            loginState.set(JSON.parse(localState));
-        } else {
-            saveToLocal($loginState);
-        }
+    const cats = data.cats;
+    const user = data.user;
+
+    let profileUrl = "";
+
+    if (user){
+        profileUrl = user.profileUrl;
     }
-
-    const url = import.meta.env.VITE_BACKEND_URL;
-
-    const userid = $loginState.userId;
-
-    const loadData = async () => {
-        const result = await fetch(`${url}/api/user/${userid}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        const data = await result.json();
-
-        /**
-         * @type {{profileUrl: string}}
-         */
-        const user = data.user;
-        userState.set({ profileUrl: user.profileUrl });
-    };
-
-    if (userid !== -1) {
-        loadData();
-    }
-    // return false;
 </script>
 
 <div id="body">
+    <Header categories={cats} selectedCategory={""} profileUrl={profileUrl}/>
     <slot />
 </div>
 

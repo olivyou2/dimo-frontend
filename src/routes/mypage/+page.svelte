@@ -4,11 +4,8 @@
     import Filter from "../../components/Filter.svelte";
     import Header from "../../components/Header.svelte";
     import Icon from "../../components/Icon.svelte";
-    import { loginState } from "../../states/loginState.js";
-
+    
     export let data;
-
-    const cats = data.cats;
 
     /**
      * @type {{place: {id: number, title: string, content: string, link: string, createdAt: string}}[]}
@@ -30,7 +27,6 @@
     fetch_data();
 </script>
 
-<Header categories={cats} selectedCategory={""} />
 <div id="container">
     <div id="title">마이페이지</div>
     <Filter />

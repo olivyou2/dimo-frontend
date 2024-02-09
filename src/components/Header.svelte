@@ -1,8 +1,6 @@
 <script>
     // @ts-nocheck
 
-    import { userState } from "../states/userState.js";
-
     import emblaCarouselSvelte from "embla-carousel-svelte";
 
     /**
@@ -10,6 +8,12 @@
      * @type {string[]}
      */
     export let categories;
+
+    /**
+     * @description The user profile url
+     * @type {string | null}
+     */
+    export let profileUrl;
 
     /**
      * @description The selected category
@@ -39,6 +43,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
         id="logo"
         src="/logo.svg"
@@ -71,15 +76,15 @@
     <div
         id="icon"
         on:click={() => {
-            if ($userState.profileUrl) {
+            if (profileUrl) {
                 location.href = "/mypage";
             } else {
                 location.href = "/login";
             }
         }}
     >
-        {#if $userState.profileUrl}
-            <img src={$userState.profileUrl} alt="" width="50" height="50" />
+        {#if profileUrl}
+            <img src={profileUrl} alt="" width="50" height="50" />
         {/if}
         <!-- <img src="/icon.svg" alt="" width="50" height="50" /> -->
     </div>

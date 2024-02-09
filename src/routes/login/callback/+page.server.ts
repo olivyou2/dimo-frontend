@@ -1,10 +1,6 @@
+import type { PageServerLoad } from "./$types";
 
-/**
- * 
- * @param {*} param0 
- * @returns 
- */
-export async function load({ url }) {
+export const load: PageServerLoad = async ({ url, cookies }) => {
 
     /**
      * @type {URLSearchParams}
@@ -15,6 +11,8 @@ export async function load({ url }) {
     if (!userId) {
         return { login: false, href: "/login" };
     }
+
+    cookies.set("userId", userId, { path: "/" });
 
     return { userId, login: true, href: "/" };
 }

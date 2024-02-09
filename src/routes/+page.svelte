@@ -8,7 +8,6 @@
 
     const sites = data.pages;
     const tags = data.tags;
-    const cats = data.cats;
 
     /** @type {typeof sites} */
     let show_sites = [];
@@ -51,7 +50,6 @@
     }
 </script>
 
-<Header categories={cats} selectedCategory={cat} />
 <div id="layout">
     <Filter bind:query bind:view_selected bind:sort_selected />
     <Tags {tags} bind:selectedTags={tag_selected} />
