@@ -28,6 +28,10 @@
     }
 
     categories = ["전체", ...categories];
+
+    if (selectedCategory === "") {
+        selectedCategory = "전체";
+    }
 </script>
 
 <div id="container">
