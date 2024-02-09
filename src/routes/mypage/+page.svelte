@@ -1,30 +1,14 @@
-<script>
+<script lang="ts">
+    import type { BookmarkPage } from "$lib/page";
+
     const url = import.meta.env.VITE_BACKEND_URL;
 
     import Filter from "../../components/Filter.svelte";
-    import Header from "../../components/Header.svelte";
     import Icon from "../../components/Icon.svelte";
     
     export let data;
 
-    /**
-     * @type {{place: {id: number, title: string, content: string, link: string, createdAt: string}}[]}
-     */
-    let bookmarks = [];
-
-    async function fetch_data() {
-        const { userId } = $loginState;
-        const res = await fetch(`${url}/api/bookmark/${userId}`);
-        const data = await res.json();
-
-        /**
-         * @type {typeof bookmarks}
-         */
-        const bookmarks_data = data.bookmarks;
-        bookmarks = bookmarks_data;
-    }
-
-    fetch_data();
+    let bookmarks: BookmarkPage[] = data.bookmarkPages;
 </script>
 
 <div id="container">
@@ -32,7 +16,7 @@
     <Filter />
     <div id="icons">
         {#each bookmarks as bookmark}
-            <Icon title={bookmark.place.title} link={bookmark.place.link} />
+            <Icon title={bookmark.title} link={bookmark.link} />
         {/each}
     </div>
 </div>

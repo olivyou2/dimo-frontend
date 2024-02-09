@@ -19,26 +19,24 @@ async function get_categories() {
 }
 
 export const load:ServerLoad = async (payload) => {
-    const { params, cookies } = payload;
+    const { params, cookies, url } = payload;
 
     const cats = await get_categories();
     const userId = cookies.get("userId");
 
-    if (userId) {
-        const user = await getUserProfile(parseInt(userId));
+    let user = null;
+    let selectedCategory = "전체";
 
-        return {
-            userId, 
-            user, 
-            
-            cats, 
-        };
-    } else {
-        return {
-            userId: null, 
-            user: null,
-            
-            cats, 
-        };
-    }
+    if (userId) {
+        user = await getUserProfile(parseInt(userId));
+    } 
+
+    url.searchParams.get("category") && (selectedCategory = url.searchParams.get("category") as string);
+
+    return {
+        user,
+        cats, 
+        
+        selectedCategory
+    };
 } ;

@@ -5,7 +5,7 @@
     /**
      * @type {string} query
      */
-    export let query;
+    export let query = "";
 
     const sort_items = ["가나다순", "최신순"];
 

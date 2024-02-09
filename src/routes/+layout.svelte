@@ -6,6 +6,8 @@
     const cats = data.cats;
     const user = data.user;
 
+    const selectedCategory = data.selectedCategory;
+
     let profileUrl = "";
 
     if (user){
@@ -14,7 +16,7 @@
 </script>
 
 <div id="body">
-    <Header categories={cats} selectedCategory={""} profileUrl={profileUrl}/>
+    <Header categories={cats} selectedCategory={selectedCategory} profileUrl={profileUrl}/>
     <slot />
 </div>
 
