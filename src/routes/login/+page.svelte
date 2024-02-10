@@ -1,9 +1,6 @@
 <script lang="ts">
-    import Header from "../../components/Header.svelte";
-
     export let data;
 
-    const cats = data.cats;
     const logoin_url = data.login_url;
 
     let checked: boolean = false;
@@ -23,7 +20,7 @@
 
         <div id="btn_row">
             <button id="btn" on:click={on_click_login}>
-                <img src="/google.svg" alt="" />
+                <img src="/google.svg" alt="" id="google"/>
                 구글 계정으로 로그인
             </button>
         </div>
@@ -127,6 +124,40 @@
             }
             #label {
                 cursor: pointer;
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        #login_row{
+            font-size: 24px !important;
+        }
+
+        #google {
+            width: 32px;
+            height: 32px;
+        }
+
+        #btn {
+            width: 190px !important;
+            height: 41px !important;
+
+            font-size: 12px !important;
+        }
+
+        #keep_login_row {
+            font-size: 12px !important;
+        }
+
+        #chkbox {
+            width: 16px !important;
+            height: 16px !important;
+
+            #chk {
+                width: 12px !important;
+                height: 12px !important;
+                top: 2px !important;
+                left: 2px !important;
             }
         }
     }

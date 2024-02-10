@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { deleteCookie } from "$lib/cookie";
     import type { BookmarkPage } from "$lib/page";
 
     const url = import.meta.env.VITE_BACKEND_URL;
@@ -9,11 +10,21 @@
     export let data;
 
     let bookmarks: BookmarkPage[] = data.bookmarkPages;
+    
+    const logout = () => {
+        deleteCookie("userId");
+        location.href = "/";
+    }
 </script>
 
 <div id="container">
     <div id="title">마이페이지</div>
     <Filter />
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div id="logout" on:click={logout}>
+        로그아웃
+    </div>
     <div id="icons">
         {#each bookmarks as bookmark}
             <Icon title={bookmark.title} link={bookmark.link} />
@@ -27,7 +38,11 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        
+
+        #logout {
+            cursor: pointer;
+        }
+
         > #title {
             display: flex;
             justify-content: center;
