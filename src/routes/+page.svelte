@@ -73,6 +73,7 @@
         flex-direction: column;
         align-items: center;
         padding: 0px 40px;
+        padding-bottom: 100px;
     }
 
     #container {
@@ -89,6 +90,7 @@
     @media (max-width: 800px) {
         #layout {
             padding: 0px 20px;
+            padding-bottom: 100px;
         }
 
         #container {
