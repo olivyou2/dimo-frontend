@@ -194,6 +194,10 @@
             .category {
                 font-size: 16px !important;
             }
+
+            #category_wrapper{
+                padding-top: 0px;
+            }
         }
     }
 </style>
