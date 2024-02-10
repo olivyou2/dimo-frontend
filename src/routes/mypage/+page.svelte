@@ -12,8 +12,7 @@
     let bookmarks: BookmarkPage[] = data.bookmarkPages;
     
     const logout = () => {
-        deleteCookie("userId");
-        location.href = "/";
+        location.href = "/logout";
     }
 </script>
 
