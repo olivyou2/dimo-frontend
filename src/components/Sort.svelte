@@ -88,8 +88,8 @@
 
         > #sort_dropdown {
             z-index: 2;
-            top: 100%;
-            right: -8px;
+            top: calc(100% + 4px);
+            right: 0px;
             position: absolute;
             display: flex;
             flex-direction: column;
@@ -120,6 +120,14 @@
     @media (max-width: 800px) {
         #sortby {
             font-size: 12px !important;
+        }
+
+        #sort_dropdown {
+            > .option {
+                font-size: 12px !important;
+                height: 20px !important;
+                width: 60px !important;
+            }
         }
     }
 
