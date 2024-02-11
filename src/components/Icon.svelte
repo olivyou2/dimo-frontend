@@ -77,18 +77,19 @@
             top: -14px;
             cursor: pointer;
 
-            transition: all 0.05s ease-in-out;
+            transition: all 0.1s ease-in-out;
         }
 
         > #delete.visible {
             /* alpha to 1 */
-            opacity: 1;
+            /* opacity: 1; */
         }
 
         > #delete.unvisible {
             /* alpha to 0 */
-            opacity: 0;
-            top: -24px;
+            /* opacity: 0; */
+            transform: scale(0);
+            /* top: -24px; */
         }
 
         > #title {
