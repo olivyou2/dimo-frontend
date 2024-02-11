@@ -32,18 +32,28 @@
     location.href = "/admin/modify?usage=create";
   }
 
-  /**
-   *
-   * @param idx {number}
-   */
-  function on_click_modify(idx) {
-    location.href = `/admin/modify?usage=modify&idx=${idx}`;
+  function on_click_csv() {
+    // TODO: CSV 내려받기
+
+    const header = "카테고리,제목,링크,태그,설명";
+    const field = pages.map((page) => {
+      return `${page.category},${page.title},${page.link},${page.tags.join(
+        ",",
+      )},${page.description}`;
+    });
+
+    let csv = header + "\n" + field.join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv;charset=UTF-8" });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 </script>
 
 <div id="container">
   <div id="buttons">
-    <button on:click={on_click_add}>페이지 추가</button>
+    <button id="new-page" on:click={on_click_add}>새 페이지 추가</button>
+    <button id="save-csv" on:click={on_click_csv}>CSV 내려받기</button>
   </div>
   <table>
     <thead>
@@ -54,7 +64,6 @@
         <th>태그</th>
         <th>설명</th>
         <th>삭제</th>
-        <th>수정</th>
       </tr>
     </thead>
     <tbody>
@@ -74,15 +83,6 @@
               삭제
             </button>
           </td>
-          <td id="modify">
-            <button
-              on:click={() => {
-                on_click_modify(page.id);
-              }}
-            >
-              수정
-            </button>
-          </td>
         </tr>
       {/each}
     </tbody>
@@ -90,6 +90,10 @@
 </div>
 
 <style>
+  #new-page {
+    margin-right: 10px;
+  }
+
   #container {
     width: 100%;
     height: 100%;
@@ -97,6 +101,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
   }
 
   #buttons {

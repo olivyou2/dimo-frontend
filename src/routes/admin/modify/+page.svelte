@@ -62,34 +62,137 @@
     function on_click_back() {
         history.back();
     }
+
+    let selected_categories = [];
+    let selected_category;
+
+    $: on_select_category(selected_category);
+    $: console.log(selected_categories);
+
+    /**
+     *
+     * @param category {string}
+     */
+    function on_select_category(category) {
+        if (category === "" || !category) {
+            return false;
+        }
+        console.log("a");
+        if (selected_categories.includes(category)) {
+            selected_categories = selected_categories.filter(
+                (c) => c !== category,
+            );
+        } else {
+            selected_categories = [...selected_categories, category];
+        }
+    }
+
+    function on_delete_category(category) {
+        selected_categories = selected_categories.filter((c) => c !== category);
+    }
 </script>
 
 <div id="container">
-    <select name="category" id="category">
-        {#each categories as category}
-            <option value={category.categoryName}
-                >{category.categoryName}</option
-            >
-        {/each}
-    </select>
-    <input type="text" name="title" id="title" placeholder="title" />
-    <input type="text" name="link" id="link" placeholder="link" />
-    <input type="text" name="tags" id="tags" placeholder="tags" />
-    <input
-        type="text"
-        name="description"
-        id="description"
-        placeholder="description"
-    />
-    <button
-        on:click={() =>
-            add_page(
-                document.getElementById("title").value,
-                document.getElementById("description").value,
-                document.getElementById("link").value,
-                document.getElementById("category").value,
-                document.getElementById("tags").value.split(","),
-            )}>{submit_text}</button
-    >
-    <button on:click={on_click_back}>뒤로</button>
+    <div id="category_section">
+        <ul id="category_list">
+            {#each selected_categories as category}
+                <li>
+                    {category}
+                    <span
+                        on:click={() => on_delete_category(category)}
+                        class="remove">X</span
+                    >
+                </li>
+            {/each}
+        </ul>
+        <select name="category" id="category" bind:value={selected_category}>
+            {#each categories as category}
+                <option value={category.categoryName}
+                    >{category.categoryName}</option
+                >
+            {/each}
+        </select>
+    </div>
+
+    <div id="title_section">
+        <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="title"
+            class="inputbox"
+        />
+    </div>
+
+    <div id="link_section">
+        <input
+            type="text"
+            name="link"
+            id="link"
+            placeholder="link"
+            class="inputbox"
+        />
+    </div>
+    <div id="tag_section">
+        <input
+            type="text"
+            name="tags"
+            id="tags"
+            placeholder="tags"
+            class="inputbox"
+        />
+    </div>
+    <div id="description_section">
+        <input
+            type="text"
+            name="description"
+            id="description"
+            placeholder="description"
+            class="inputbox"
+        />
+    </div>
+    <div id="submit_box">
+        <button
+            on:click={() =>
+                add_page(
+                    document.getElementById("title").value,
+                    document.getElementById("description").value,
+                    document.getElementById("link").value,
+                    selected_categories,
+                    document.getElementById("tags").value.split(","),
+                )}>{submit_text}</button
+        >
+        <button on:click={on_click_back}>뒤로</button>
+    </div>
 </div>
+
+<style>
+    .remove {
+        cursor: pointer;
+    }
+
+    #container {
+        padding: 20px;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .inputbox {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 4px 10px;
+
+        text-align: start;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        max-width: 350px;
+        border: 2px solid rgba(0, 0, 0, 0.8);
+    }
+</style>

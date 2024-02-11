@@ -1,13 +1,10 @@
+import type { PageResponse } from "$lib/page";
+
 const url = import.meta.env.VITE_BACKEND_URL;
 
 async function get_pages() {
     const result = await fetch(`${url}/api/place?category=&tags`);
-    const data = await result.json();
-
-    /**
-    * @description The pages database
-    * @type {{categories: {id: number, categoryName: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
-    */
+    const data: { places: PageResponse[] } = await result.json();
 
     const data_pages = data.places;
 
@@ -22,7 +19,7 @@ async function get_pages() {
             category: categories,
             title: page.place.title,
             link: page.place.link,
-            tags: page.place.tags.map((tag) => tag.tag),
+            tags: page.tags.map((tag) => tag.tag),
             description: page.place.content,
             id: page.place.id,
         };
