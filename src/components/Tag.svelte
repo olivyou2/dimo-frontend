@@ -1,6 +1,10 @@
 <script>
+    import { tagStore } from "../store/tagStore";
+
     export let activated = false;
     export let tag = "";
+
+    $: activated = $tagStore.includes(tag);
 
     /**
      * @description on click
@@ -56,8 +60,6 @@
             color: white;
         }
     }
-
-
 
     @media (max-width: 800px) {
         .tag {

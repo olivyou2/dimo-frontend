@@ -1,16 +1,12 @@
 <script>
     import Tag from "./Tag.svelte";
     import emblaCarouselSvelte from "embla-carousel-svelte";
+    import { tagStore } from "../store/tagStore";
 
     /**
      * @type {string[]}
      */
     export let tags = [];
-
-    /**
-     * @type {string[]}
-     */
-    export let selectedTags = [];
 
     /**
      *
@@ -19,10 +15,10 @@
      */
     function onClickTag(activated, tag) {
         if (activated) {
-            selectedTags = [...selectedTags, tag];
+            tagStore.set([...$tagStore, tag]);
         } else {
-            selectedTags = selectedTags.filter(
-                (selected_tag) => selected_tag !== tag,
+            tagStore.set(
+                $tagStore.filter((selected_tag) => selected_tag !== tag),
             );
         }
     }
@@ -45,7 +41,7 @@
         width: 100%;
         max-width: 1224px;
     }
-    
+
     #container {
         margin-top: 42px;
         display: flex;
@@ -55,7 +51,6 @@
         width: 100%;
         max-width: 1224px;
     }
-
 
     @media (max-width: 800px) {
         #container {

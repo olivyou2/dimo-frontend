@@ -2,6 +2,7 @@
     import { invalidate, invalidateAll } from "$app/navigation";
     import { addBookmark, removeBookmark } from "$lib/bookmark";
     import type { RenderPage } from "$lib/page";
+    import { tagStore } from "../store/tagStore";
     import { userStore } from "../store/userStore";
 
     export let page: RenderPage;
@@ -35,6 +36,10 @@
             // await invalidateAll();
             await invalidate("pages");
         }
+    };
+
+    const on_click_tag = (tag: string) => {
+        tagStore.set([...$tagStore, tag]);
     };
 </script>
 
@@ -90,7 +95,7 @@
     <div id="content_section" class={collapsed ? "hide" : ""}>
         <div id="tag_section">
             {#each page.tags as tag}
-                <div class="tag">
+                <div class="tag" on:click={() => on_click_tag(tag)}>
                     <span>:</span>
                     <span>{tag}</span>
                 </div>
@@ -207,6 +212,9 @@
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+
+        user-select: none;
+        cursor: pointer;
     }
 
     #description {
