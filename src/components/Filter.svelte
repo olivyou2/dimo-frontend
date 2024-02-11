@@ -16,6 +16,8 @@
 
     /** @type {"간단히" | "자세히"} */
     export let view_selected = view_items[0];
+
+    export let view_enable = true;
 </script>
 
 <div id="wrapper">
@@ -25,7 +27,10 @@
         </div>
         <div id="sort_container">
             <Sort options={sort_items} bind:selected={sort_selected} />
-            <Sort options={view_items} bind:selected={view_selected} />
+
+            {#if view_enable}
+                <Sort options={view_items} bind:selected={view_selected} />
+            {/if}
         </div>
     </div>
 </div>

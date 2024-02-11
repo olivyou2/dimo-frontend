@@ -28,6 +28,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            width: 100%;
 
             background: none;
             border: none;
@@ -43,7 +44,7 @@
     }
 
     @media (max-width: 800px) {
-        #container{
+        #container {
             gap: 10px;
         }
         #search_icon {

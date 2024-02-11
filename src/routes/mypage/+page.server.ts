@@ -4,8 +4,7 @@ import type { PageServerLoad } from "../$types";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 export const load: PageServerLoad = async ({ cookies, depends }) => {
-    depends("pages");
-    console.log("mypage")
+    depends("mypage");
 
     const userId = cookies.get("userId");
 

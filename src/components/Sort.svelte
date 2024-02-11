@@ -65,6 +65,7 @@
         user-select: none;
         cursor: pointer;
         position: relative;
+        white-space: nowrap;
 
         > #sortby {
             color: rgba(0, 0, 0, 0.5);
@@ -130,5 +131,4 @@
             }
         }
     }
-
 </style>

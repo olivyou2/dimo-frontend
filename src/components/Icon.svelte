@@ -9,10 +9,7 @@
     const onClickRemove = async () => {
         if (edit) {
             await removeBookmark(bookmark.id);
-
-            console.log("aa");
             await invalidate("mypage");
-            console.log("bb");
         }
     };
 </script>
@@ -32,7 +29,7 @@
     <img
         id="icon"
         src={`https://www.google.com/s2/favicons?domain=${bookmark.place.link}&sz=256`}
-        class={edit ? "non-clickable" : ""}
+        class={edit ? "edit" : ""}
     />
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -47,10 +44,6 @@
 </div>
 
 <style lang="scss">
-    .non-clickable {
-        cursor: default !important;
-    }
-
     #container {
         display: flex;
         justify-content: space-between;
@@ -68,6 +61,14 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
             background: #fff;
             cursor: pointer;
+
+            transition: all 0.1s ease-in-out;
+        }
+
+        > #icon.edit {
+            /* alpha to 0.5 */
+            opacity: 0.5;
+            cursor: default !important;
         }
 
         > #delete {
@@ -99,6 +100,7 @@
             font-weight: 400;
             line-height: normal;
             cursor: pointer;
+            user-select: none;
         }
     }
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Bookmark } from "$lib/page";
+    import type { SortTypes, ViewTypes } from "$lib/sort";
 
     import Filter from "../../components/Filter.svelte";
     import Icon from "../../components/Icon.svelte";
@@ -7,7 +8,8 @@
     export let data;
     let edit = false;
 
-    let bookmarks: Bookmark[] = data.bookmarkPages;
+    let bookmarks: Bookmark[];
+    $: bookmarks = data.bookmarkPages;
 
     const logout = () => {
         location.href = "/logout";
@@ -16,14 +18,43 @@
     const onedit = () => {
         edit = !edit;
     };
+
+    let showBookmarks: Bookmark[] = [];
+
+    let sort_selected: SortTypes;
+    let tag_selected: string[] = [];
+
+    let query = "";
+
+    // Query filtering
+    $: {
+        [query, sort_selected, tag_selected, data],
+            ((showBookmarks = bookmarks.filter((bookmark) => {
+                if (query === "") return true;
+
+                return (
+                    bookmark.place.title.includes(query) ||
+                    bookmark.place.link.includes(query)
+                );
+            })),
+            (showBookmarks = showBookmarks.sort((a, b) => {
+                if (sort_selected === "가나다순") {
+                    return a.place.title.localeCompare(b.place.title);
+                } else if (sort_selected === "최신순") {
+                    return b.id - a.id;
+                } else {
+                    return 0;
+                }
+            })));
+    }
 </script>
 
 <div id="container">
     <div id="title">마이페이지</div>
-    <Filter />
+    <Filter bind:sort_selected bind:query view_enable={false} />
     <div id="icons">
-        {#each [...bookmarks] as bookmark}
-            <div class="icon">
+        {#each showBookmarks as bookmark}
+            <div id={bookmark.id.toString()} class="icon">
                 <Icon {bookmark} bind:edit />
             </div>
         {/each}
@@ -121,6 +152,24 @@
         > #logout {
             cursor: pointer;
             user-select: none;
+        }
+    }
+
+    @media (max-width: 800px) {
+        #footer {
+            height: 70px !important;
+        }
+
+        #footer-wrapper {
+            height: calc(70px - 50px) !important;
+        }
+
+        #icons {
+            height: calc(100vh - 392px) !important;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(10px, 140px)
+            ) !important;
         }
     }
 </style>

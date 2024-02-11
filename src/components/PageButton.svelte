@@ -19,6 +19,11 @@
     };
 
     const on_click_bookmark = async () => {
+        if ($userStore.id === 0) {
+            location.href = "/login";
+            return;
+        }
+
         bookmarked = !bookmarked;
 
         if (bookmarked) {
