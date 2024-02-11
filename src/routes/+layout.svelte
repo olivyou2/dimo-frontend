@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Header from '../components/Header.svelte';
+    import Header from "../components/Header.svelte";
+    import { userStore } from "../store/userStore";
 
     export let data;
 
@@ -11,13 +12,14 @@
 
     let profileUrl = "";
 
-    if (user){
+    if (user) {
         profileUrl = user.profileUrl;
+        userStore.set(user);
     }
 </script>
 
 <div id="body">
-    <Header categories={cats} selectedCategory={selectedCategory} profileUrl={profileUrl} isLogin={isLogin}/>
+    <Header categories={cats} {selectedCategory} {profileUrl} {isLogin} />
     <slot />
 </div>
 

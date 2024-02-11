@@ -1,47 +1,16 @@
-<script>
-    /**
-     * @description The title of the page
-     * @type {string}
-     */
-    export let title;
+<script lang="ts">
+    import { invalidate, invalidateAll } from "$app/navigation";
+    import { addBookmark, removeBookmark } from "$lib/bookmark";
+    import type { RenderPage } from "$lib/page";
+    import { userStore } from "../store/userStore";
 
-    /**
-     * @description The link of the page
-     * @type {string}
-     */
-    export let link;
+    export let page: RenderPage;
+    export let clickable: boolean = false;
+    export let clicked: boolean = false;
+    export let collapsed: boolean = false;
+    export let bookmarked: boolean = page.bookmark ? true : false;
 
-    /**
-     * @description The tags of the page
-     * @type {string[]}
-     */
-    export let tags;
-
-    /**
-     * @description The description of the page
-     * @type {string}
-     */
-    export let description;
-
-    /**
-     * @description Whether the page is clickable
-     * @type {boolean}
-     */
-    export let clickable = false;
-
-    /**
-     * @description Whether the page is clicked
-     * @type {boolean}
-     */
-    export let clicked = false;
-
-    /**
-     * @description Whether the page is collapsed
-     * @type {boolean}
-     */
-    export let collapsed = false;
-
-    export let bookmarked = false;
+    $: bookmarked = page.bookmark ? true : false;
 
     const on_click = () => {
         if (clickable) {
@@ -49,8 +18,18 @@
         }
     };
 
-    const on_click_bookmark = () => {
+    const on_click_bookmark = async () => {
         bookmarked = !bookmarked;
+
+        if (bookmarked) {
+            await addBookmark(page.id, $userStore.id);
+            // await invalidateAll();
+            await invalidate("pages");
+        } else {
+            await removeBookmark(page.bookmark?.id);
+            // await invalidateAll();
+            await invalidate("pages");
+        }
     };
 </script>
 
@@ -64,10 +43,15 @@
     <div id="title_section">
         <div id="title">
             <div id="left">
-                <a href={link} id="text">
-                    {title}
+                <a href={page.link} id="text">
+                    {page.title}
                 </a>
-                <img src="/favicon.svg" alt="" width="17" />
+                <img
+                    src={`https://www.google.com/s2/favicons?domain=${page.link}&sz=256`}
+                    alt=""
+                    width="22"
+                    height="22"
+                />
             </div>
             <div id="right">
                 {#if bookmarked}
@@ -93,14 +77,14 @@
                 {/if}
             </div>
         </div>
-        <a href={link} id="link">
-            {link}
+        <a href={page.link} id="link">
+            {page.link}
         </a>
     </div>
 
     <div id="content_section" class={collapsed ? "hide" : ""}>
         <div id="tag_section">
-            {#each tags as tag}
+            {#each page.tags as tag}
                 <div class="tag">
                     <span>:</span>
                     <span>{tag}</span>
@@ -108,7 +92,7 @@
             {/each}
         </div>
         <div id="description">
-            {description}
+            {page.description}
         </div>
     </div>
 </div>
@@ -158,6 +142,7 @@
         display: flex;
         gap: 7px;
         height: 33px;
+        align-items: center;
     }
 
     #text {
@@ -246,7 +231,6 @@
     #bookmark {
         cursor: pointer;
     }
-
 
     @media (max-width: 800px) {
         #title_section {

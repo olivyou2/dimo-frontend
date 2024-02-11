@@ -28,7 +28,6 @@
     }
   }
 
-
   function on_click_add() {
     location.href = "/admin/modify?usage=create";
   }

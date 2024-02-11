@@ -13,12 +13,12 @@ async function get_categories() {
     const result = await fetch(`${url}/api/place/cat/`);
 
     const data = await result.json();
-    const categories : Category[] = data.categories;
+    const categories: Category[] = data.categories;
     return categories.map(category => category.categoryName);
 
 }
 
-export const load:ServerLoad = async (payload) => {
+export const load: ServerLoad = async (payload) => {
     const { params, cookies, url } = payload;
 
     const cats = await get_categories();
@@ -29,14 +29,14 @@ export const load:ServerLoad = async (payload) => {
 
     if (userId) {
         user = await getUserProfile(parseInt(userId));
-    } 
+    }
 
     url.searchParams.get("category") && (selectedCategory = url.searchParams.get("category") as string);
 
     return {
         user,
-        cats, 
-        
+        cats,
+
         selectedCategory
     };
-} ;
+};

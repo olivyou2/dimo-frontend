@@ -1,19 +1,16 @@
+import type { Category } from "$lib/category";
+import type { BookmarkPage, PageResponse, RenderPage } from "$lib/page";
+import type { Tag } from "$lib/tag";
+import type { PageServerLoad } from "./$types";
+
 const url = import.meta.env.VITE_BACKEND_URL;
 
-/**
- * 
- * @param {string} category 
- * @returns 
- */
-async function get_pages(category) {
-    const result = await fetch(`${url}/api/place?category=${category}&tags=`);
+async function get_pages(category: string, userId?: string): Promise<RenderPage[]> {
+    if (!userId) userId = "";
+    const result = await fetch(`${url}/api/place?category=${category}&tags=&userId=${userId}`);
     const data = await result.json();
 
-    /**
-     * @description The pages database
-     * @type {{categories: {id: number, categoryName: string}[], tags: {id: number, tag: string}[], place: {category: {id: number, categoryName: string}, title: string, link: string, tags: {tag: string, id: number}[], content: string, id: number}}[]}
-     */
-    const data_pages = data.places;
+    const data_pages: PageResponse[] = data.places;
 
     return data_pages.map((page) => {
         let tags = page.tags.map((tag) => tag.tag);
@@ -24,6 +21,7 @@ async function get_pages(category) {
             tags: tags,
             description: page.place.content,
             id: page.place.id,
+            bookmark: page.bookmark
         };
     });
 }
@@ -36,35 +34,27 @@ async function get_pages(category) {
 async function get_tags(category = "") {
     const result = await fetch(`${url}/api/tag?category=${category}`);
 
-    /**
-     * @description The tags database
-     * @type {{tags: {tag: string, id: number}[]}}
-     */
     const data = await result.json();
+    const tags: Tag[] = data.tags;
 
-    return data.tags.map(tag => tag.tag);
+    return tags.map(tag => tag.tag);
 }
 
-/**
- * 
- * @param {*} param0 
- * @returns 
- */
-export async function load({ url }) {
+export const load: PageServerLoad = async ({ cookies, url, depends }) => {
+    depends("pages");
 
-    /**
-     * @type {URLSearchParams}
-     */
     const params = url.searchParams;
     let categoryParam = params.get("category") || "";
-    let category = categoryParam;
+    let category: string = categoryParam;
 
     if (categoryParam === "전체") {
         category = "";
     }
 
+    let userId = cookies.get("userId");
+
     return {
-        pages: await get_pages(category),
+        pages: await get_pages(category, userId),
         tags: await get_tags(category),
         page: params.get("category"),
 

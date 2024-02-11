@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+    import type { RenderPage } from "$lib/page";
+    import type { SortTypes, ViewTypes } from "$lib/sort";
     import Filter from "../components/Filter.svelte";
     import Header from "../components/Header.svelte";
     import PageButton from "../components/PageButton.svelte";
@@ -6,28 +8,25 @@
 
     export let data;
 
-    const sites = data.pages;
-    const tags = data.tags;
+    let sites: RenderPage[] = [];
+    let tags: string[] = [];
 
-    /** @type {typeof sites} */
-    let show_sites = [];
+    $: {
+        sites = data.pages;
+        tags = data.tags;
+    }
 
-    /** @type {"간단히" | "자세히"} query */
-    let view_selected;
+    let show_sites: RenderPage[] = [];
 
-    /** @type {string} query */
-    let sort_selected;
-
-    /** @type {string[]} tag_selected*/
-    let tag_selected = [];
-
-    const cat = data.now_cat;
+    let view_selected: ViewTypes;
+    let sort_selected: SortTypes;
+    let tag_selected: string[] = [];
 
     let query = "";
 
     // Query filtering
     $: {
-        [query, sort_selected, tag_selected],
+        [query, sort_selected, tag_selected, data],
             ((show_sites = sites.filter((site) => {
                 if (query === "") return true;
 
@@ -56,13 +55,7 @@
 
     <div id="container">
         {#each show_sites as site}
-            <PageButton
-                title={site.title}
-                link={site.link}
-                tags={site.tags}
-                description={site.description}
-                collapsed={view_selected === "간단히"}
-            />
+            <PageButton page={site} collapsed={view_selected === "간단히"} />
         {/each}
     </div>
 </div>
