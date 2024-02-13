@@ -13,9 +13,10 @@
 
     let profileUrl = "";
 
-    if (user) {
+    if (user && data.token) {
         profileUrl = user.profileUrl;
         userStore.set(user);
+        tokenStore.set(data.token);
     }
 </script>
 

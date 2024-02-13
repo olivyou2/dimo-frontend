@@ -34,7 +34,6 @@ export const load: ServerLoad = async (payload) => {
 
     if (accessToken) {
         user = await getUserProfile(accessToken);
-        tokenStore.set(accessToken);
     }
 
     url.searchParams.get("category") && (selectedCategory = url.searchParams.get("category") as string);
@@ -42,6 +41,7 @@ export const load: ServerLoad = async (payload) => {
     return {
         user,
         cats,
+        token: accessToken,
 
         selectedCategory
     };
