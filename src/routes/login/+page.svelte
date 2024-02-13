@@ -132,6 +132,10 @@
             #label {
                 cursor: pointer;
             }
+
+            > #label.activated {
+                color: rgba(0, 0, 0, 0.8);
+            }
         }
     }
 
@@ -152,9 +156,6 @@
         #keep_login_row {
             > #label {
                 font-size: 14px !important;
-            }
-            > #label.activated {
-                color: rgba(0, 0, 0, 0.8);
             }
         }
 
