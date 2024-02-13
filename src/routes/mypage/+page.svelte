@@ -69,7 +69,7 @@
     {:else}
         <div id="top-shadow"></div>
         <div id="icons">
-            {#each [...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks] as bookmark}
+            {#each showBookmarks as bookmark}
                 <div id={bookmark.id.toString()} class="icon">
                     <Icon {bookmark} bind:edit />
                 </div>
