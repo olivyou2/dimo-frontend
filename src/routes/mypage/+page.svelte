@@ -52,13 +52,23 @@
 <div id="container">
     <!-- <div id="title">마이페이지</div> -->
     <Filter bind:sort_selected bind:query view_enable={false} />
-    <div id="icons">
-        {#each showBookmarks as bookmark}
-            <div id={bookmark.id.toString()} class="icon">
-                <Icon {bookmark} bind:edit />
+    {#if showBookmarks.length === 0}
+        <div id="empty">
+            <img src="/bookmark.svg" width="38" alt="" />
+            <div id="description">
+                자주 가는 페이지를 저장하고<br />
+                한 자리에 모아보세요
             </div>
-        {/each}
-    </div>
+        </div>
+    {:else}
+        <div id="icons">
+            {#each showBookmarks as bookmark}
+                <div id={bookmark.id.toString()} class="icon">
+                    <Icon {bookmark} bind:edit />
+                </div>
+            {/each}
+        </div>
+    {/if}
 </div>
 
 <div id="footer-wrapper">
@@ -76,6 +86,23 @@
 </div>
 
 <style lang="scss">
+    #empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        height: calc(100vh - 209px);
+    }
+    #description {
+        color: rgba(0, 0, 0, 0.5);
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 118.75%; /* 38px */
+    }
     #container {
         padding: 0px 40px;
         display: flex;
@@ -160,10 +187,10 @@
     }
 
     @media (max-width: 800px) {
-        #title{
+        #title {
             font-size: 24px !important;
         }
-        #container{
+        #container {
             padding: 0px 20px;
         }
         #footer {

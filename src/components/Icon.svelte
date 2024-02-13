@@ -21,7 +21,8 @@
     id="container"
     on:click={() => {
         if (!edit) {
-            location.href = bookmark.place.link;
+            // location.href = bookmark.place.link;
+            window.open(bookmark.place.link, "_blank");
         }
     }}
 >
