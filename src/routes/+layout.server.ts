@@ -32,6 +32,10 @@ export const load: ServerLoad = async (payload) => {
         selectedCategory = "";
     }
 
+    if (url.pathname === "/login") {
+        selectedCategory = "로그인";
+    }
+
     if (accessToken) {
         user = await getUserProfile(accessToken);
     }
