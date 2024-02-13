@@ -217,7 +217,6 @@
         }
         #container {
             height: 56px;
-            width: calc(100% - 42px);
             padding-left: 20px;
             padding-right: 18px;
             #logo {

@@ -20,7 +20,7 @@
 
         <div id="btn_row">
             <button id="btn" on:click={on_click_login}>
-                <img src="/google.svg" alt="" id="google"/>
+                <img src="/google.svg" alt="" id="google" />
                 구글 계정으로 로그인
             </button>
         </div>
@@ -35,7 +35,9 @@
             </div>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <div id="label" on:click={on_click_keep}>로그인 상태 유지</div>
+            <div id="label" on:click={on_click_keep} class:activated={checked}>
+                로그인 상태 유지
+            </div>
         </div>
     </div>
 </div>
@@ -47,6 +49,11 @@
         justify-content: center;
         height: calc(100vh - 120px);
     }
+
+    #google {
+        width: 24px;
+        height: 24px;
+    }
     #container {
         #login_row {
             display: flex;
@@ -55,7 +62,7 @@
             color: rgba(0, 0, 0, 0.5);
             text-align: center;
             font-family: Pretendard;
-            font-size: 48px;
+            font-size: 32px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -67,8 +74,8 @@
             justify-content: center;
 
             #btn {
-                width: 318px;
-                height: 82px;
+                width: 225px;
+                height: 65px;
 
                 gap: 21px;
                 display: flex;
@@ -77,7 +84,7 @@
 
                 color: rgba(0, 0, 0, 0.8);
                 font-family: Pretendard;
-                font-size: 24px;
+                font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -96,7 +103,7 @@
             align-items: center;
             gap: 10px;
 
-            color: rgba(0, 0, 0, 0.8);
+            color: rgba(0, 0, 0, 0.5);
             font-family: Pretendard;
             font-size: 16px;
             font-style: normal;
@@ -107,7 +114,7 @@
                 width: 20px;
                 height: 20px;
 
-                border: 1px solid rgba(0, 0, 0, 0.5);
+                border: 1px solid rgba(0, 0, 0, 0.2);
                 background: #fff;
 
                 position: relative;
@@ -129,35 +136,36 @@
     }
 
     @media (max-width: 800px) {
-        #login_row{
-            font-size: 24px !important;
+        #login_row {
+            /* font-size: 24px !important; */
         }
 
         #google {
-            width: 32px;
-            height: 32px;
         }
 
         #btn {
-            width: 190px !important;
-            height: 41px !important;
-
-            font-size: 12px !important;
+            width: 318px !important;
+            height: 60px !important;
+            font-size: 18px !important;
         }
 
         #keep_login_row {
-            font-size: 12px !important;
+            > #label {
+                font-size: 14px !important;
+            }
+            > #label.activated {
+                color: rgba(0, 0, 0, 0.8);
+            }
         }
 
         #chkbox {
             width: 16px !important;
             height: 16px !important;
-
             #chk {
-                width: 12px !important;
-                height: 12px !important;
-                top: 2px !important;
-                left: 2px !important;
+                top: 1px !important;
+                left: 1px !important;
+                width: 14px !important;
+                height: 14px !important;
             }
         }
     }
