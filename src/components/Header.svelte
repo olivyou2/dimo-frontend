@@ -174,7 +174,7 @@
             overflow: hidden;
             > #categories {
                 display: flex;
-                gap: 36px;
+                gap: 32px;
                 // justify-content: center;
                 > .category {
                     color: rgba(0, 0, 0, 0.5);
@@ -238,6 +238,11 @@
 
             #category_wrapper {
                 padding-top: 0px;
+                padding-left: 36px !important;
+
+                > #categories {
+                    gap: 28px !important;
+                }
             }
         }
         #loginbtn {

@@ -72,7 +72,6 @@
 <div
     id="container"
     class="{clicked ? 'clicked' : ''} {collapsed ? 'collapsed' : ''}"
-    on:click={() => on_click()}
 >
     <div id="title_section">
         <div id="title">
@@ -97,9 +96,6 @@
                         </div>
                         <div></div>
                     </div>
-
-                    <Shade shade="leftToRight" shadeEnable={ltrShade} />
-                    <Shade shade="rightToLeft" shadeEnable={rtlShade} />
                 </div>
             </div>
             <div id="right">
@@ -211,8 +207,9 @@
         height: 33px;
         align-items: center;
 
-        width: 190px;
+        flex: 1;
         position: relative;
+        max-width: calc(100% - 30px);
     }
 
     #right {
@@ -223,10 +220,9 @@
     }
 
     #embla_wrapper {
-        width: fit-content;
-        overflow: scroll;
+        width: calc(100%);
+        overflow: hidden;
         position: relative;
-        width: 158px;
         // display: flex;
 
         &::-webkit-scrollbar {

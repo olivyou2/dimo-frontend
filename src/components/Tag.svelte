@@ -20,7 +20,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="tag {activated ? 'activated' : ''}" on:click={onClick}>
+<div class="tag {activated ? 'activated' : ''}" on:click={onClick} id={tag}>
     <img
         src="/tag/{activated ? 'remove.svg' : 'add.svg'}"
         alt=""
@@ -36,7 +36,7 @@
         padding: 6px 12px;
         border-radius: 24px;
         /* border: 1px solid rgba(0, 0, 0, 0.2); */
-        background: rgba(0,0,0,0.05);
+        background: rgba(0, 0, 0, 0.05);
 
         color: rgba(0, 0, 0, 0.5);
         font-family: Pretendard;

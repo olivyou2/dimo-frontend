@@ -1,19 +1,17 @@
-<script>
+<script lang="ts">
     import Tag from "./Tag.svelte";
-    import emblaCarouselSvelte from "embla-carousel-svelte";
+    import emblaCarouselSvelte, {
+        type EmblaCarouselSvelteType,
+    } from "embla-carousel-svelte";
     import { tagStore } from "../store/tagStore";
+    import type { EmblaCarouselType } from "embla-carousel";
 
-    /**
-     * @type {string[]}
-     */
-    export let tags = [];
+    export let tags: string[] = [];
 
-    /**
-     *
-     * @param {boolean} activated
-     * @param {string} tag
-     */
-    function onClickTag(activated, tag) {
+    let tagAvailable: string[] = [];
+    $: tagAvailable = tags.filter((tag) => !$tagStore.includes(tag));
+
+    function onClickTag(activated: boolean, tag: string) {
         if (activated) {
             tagStore.set([...$tagStore, tag]);
         } else {
@@ -23,12 +21,30 @@
         }
     }
 
-    // tags = ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
+    let emblaApi: EmblaCarouselType;
+
+    function onInit(event: CustomEvent<EmblaCarouselType>) {
+        emblaApi = event.detail;
+        // console.log(emblaApi.slideNodes()); // Access API
+    }
 </script>
 
-<div id="wrapper" use:emblaCarouselSvelte={{ options: { dragFree: true, watchResize: true }, plugins: [] }}>
+<div
+    id="wrapper"
+    use:emblaCarouselSvelte={{
+        options: { dragFree: true, watchResize: true },
+        plugins: [],
+    }}
+    on:emblaInit={onInit}
+>
     <div id="container">
-        {#each tags as tag}
+        {#each $tagStore as tag}
+            <Tag
+                {tag}
+                onClickHandler={(activated) => onClickTag(activated, tag)}
+            />
+        {/each}
+        {#each tagAvailable as tag}
             <Tag
                 {tag}
                 onClickHandler={(activated) => onClickTag(activated, tag)}
