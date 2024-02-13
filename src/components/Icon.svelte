@@ -98,7 +98,7 @@
             color: rgba(0, 0, 0, 0.5);
             text-align: center;
             font-family: Pretendard;
-            font-size: 20px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;

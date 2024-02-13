@@ -109,6 +109,7 @@
             on:click={() => {
                 location.href = "/login";
             }}
+            class:activated={selectedCategory === "로그인"}
         >
             로그인
         </div>
@@ -116,15 +117,21 @@
 </div>
 
 <style lang="scss">
+    #logo {
+        position: relative;
+        top: -3px;
+    }
     #loginbtn {
         color: rgba(0, 0, 0, 0.8);
         font-family: Pretendard;
         font-size: 16px;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 400;
         line-height: normal;
         cursor: pointer;
-        padding-top: 3px;
+    }
+    #loginbtn.activated {
+        font-weight: 600;
     }
     #fake_header {
         height: 80px;
@@ -133,13 +140,13 @@
         z-index: 10;
         top: 0px;
         position: fixed;
-        width: calc(100vw - 85px);
+        width: 100%;
         height: 80px;
 
         display: flex;
         flex-direction: row;
 
-        padding-left: 52px;
+        padding-left: 33px;
         padding-right: 33px;
 
         align-items: center;
@@ -147,6 +154,7 @@
 
         background-color: white;
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
 
         > #logo {
             cursor: pointer;
@@ -163,7 +171,6 @@
             padding-left: 40px;
             padding-right: 40px;
             flex: 1;
-            padding-top: 3px;
             overflow: hidden;
             > #categories {
                 display: flex;
@@ -174,7 +181,7 @@
                     font-family: Pretendard;
                     font-size: 16px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: 400;
                     line-height: normal;
                     text-decoration: none;
 
@@ -189,7 +196,7 @@
 
                 > .category.activated {
                     color: rgba(0, 0, 0, 0.8);
-                    font-weight: 700;
+                    font-weight: 600;
                 }
             }
         }

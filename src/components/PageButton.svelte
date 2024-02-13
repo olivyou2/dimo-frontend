@@ -17,7 +17,7 @@
     $: bookmarked = page.bookmark ? true : false;
 
     const on_click = () => {
-        // window.open(page.link, "_blank");
+        window.open(page.link, "_blank");
     };
 
     const on_click_bookmark = async () => {
@@ -76,7 +76,7 @@
 >
     <div id="title_section">
         <div id="title">
-            <div id="left">
+            <div id="left" on:click={on_click}>
                 <img
                     src={`https://www.google.com/s2/favicons?domain=${page.link}&sz=256`}
                     alt=""
@@ -108,8 +108,8 @@
                     <img
                         src="/bookmark_fill.svg"
                         alt=""
-                        width="26"
-                        height="38"
+                        width="16"
+                        height="21"
                         on:click={on_click_bookmark}
                         id="bookmark"
                     />
@@ -118,8 +118,8 @@
                     <img
                         src="/bookmark.svg"
                         alt=""
-                        width="26"
-                        height="38"
+                        width="16"
+                        height="21"
                         on:click={on_click_bookmark}
                         id="bookmark"
                     />
@@ -180,6 +180,20 @@
         // gap: 8px;
         max-width: 240px;
         box-sizing: border-box;
+
+        > #title > #left {
+            cursor: pointer;
+        }
+
+        &:hover {
+            > #title > #left {
+                opacity: 0.5;
+            }
+
+            > a {
+                opacity: 0.5;
+            }
+        }
     }
 
     #title {
@@ -205,6 +219,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-right: 4px;
     }
 
     #embla_wrapper {
@@ -317,7 +332,7 @@
 
     #bookmark {
         cursor: pointer;
-        width: 13px;
+        /* width: 16px; */
     }
 
     @media (max-width: 800px) {
