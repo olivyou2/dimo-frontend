@@ -1,4 +1,6 @@
+import { checkLogin } from "$lib/checklogin";
 import type { PageResponse } from "$lib/page";
+import type { PageServerLoad } from "./$types";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -26,7 +28,9 @@ async function get_pages() {
     });
 }
 
-export async function load() {
+export const load: PageServerLoad = async ({ cookies }) => {
+    checkLogin(cookies);
+
     return {
         pages: await get_pages()
     }
