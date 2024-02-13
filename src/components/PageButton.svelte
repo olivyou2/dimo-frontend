@@ -7,8 +7,7 @@
     import emblaCarouselSvelte from "embla-carousel-svelte";
     import type { EmblaCarouselType } from "embla-carousel";
     import Shade from "./Shade.svelte";
-    
-    
+
     export let page: RenderPage;
     export let clickable: boolean = false;
     export let clicked: boolean = false;
@@ -50,25 +49,22 @@
     let ltrShade = false;
     let rtlShade = false;
 
-    function onEmblaInit(event: CustomEvent<EmblaCarouselType>){
+    function onEmblaInit(event: CustomEvent<EmblaCarouselType>) {
         emblaApi = event.detail;
-        console.log(emblaApi);
 
         emblaApi.on("scroll", (api, evt) => {
             const progress = emblaApi.scrollProgress();
 
-            if (progress < 0.01){
+            if (progress < 0.01) {
                 ltrShade = false;
                 rtlShade = true;
-            }else if (progress > 0.99){
+            } else if (progress > 0.99) {
                 ltrShade = true;
                 rtlShade = false;
-            }else{
+            } else {
                 ltrShade = true;
                 rtlShade = true;
             }
-
-            console.log(progress, ltrShade, rtlShade);
         });
     }
 </script>
@@ -77,20 +73,26 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
     id="container"
-    class='{clicked ? "clicked" : ""} {collapsed ? "collapsed" : ""}'
+    class="{clicked ? 'clicked' : ''} {collapsed ? 'collapsed' : ''}"
     on:click={() => on_click()}
 >
     <div id="title_section">
         <div id="title">
             <div id="left">
-
                 <img
                     src={`https://www.google.com/s2/favicons?domain=${page.link}&sz=256`}
                     alt=""
                     width="22"
                     height="22"
                 />
-                <div id="embla_wrapper"  use:emblaCarouselSvelte={{ options: { dragFree: true }, plugins: [] }} on:emblaInit={onEmblaInit}>
+                <div
+                    id="embla_wrapper"
+                    use:emblaCarouselSvelte={{
+                        options: { dragFree: true },
+                        plugins: [],
+                    }}
+                    on:emblaInit={onEmblaInit}
+                >
                     <div id="embla_container">
                         <div id="text">
                             {page.title}
@@ -98,8 +100,8 @@
                         <div></div>
                     </div>
 
-                    <Shade shade="leftToRight" shadeEnable={ltrShade}/>
-                    <Shade shade="rightToLeft" shadeEnable={rtlShade}/>
+                    <Shade shade="leftToRight" shadeEnable={ltrShade} />
+                    <Shade shade="rightToLeft" shadeEnable={rtlShade} />
                 </div>
             </div>
             <div id="right">
@@ -158,7 +160,7 @@
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
         background: #fff;
 
-        &.collapsed{
+        &.collapsed {
             padding-bottom: 6px;
         }
 

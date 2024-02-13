@@ -44,15 +44,12 @@
 
     categories = ["전체", ...categories];
 
-    if (selectedCategory === "") {
-        selectedCategory = "전체";
-    }
-
+    // if (selectedCategory === "") {
+    //     selectedCategory = "전체";
+    // }
 </script>
 
-<div id="fake_header">
-
-</div>
+<div id="fake_header"></div>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
@@ -81,7 +78,9 @@
 
     <div
         id="category_wrapper"
-        use:emblaCarouselSvelte={{ options: { dragFree: true, watchResize: true } }}
+        use:emblaCarouselSvelte={{
+            options: { dragFree: true, watchResize: true },
+        }}
     >
         <div id="categories">
             {#each categories as category}
@@ -95,13 +94,18 @@
         </div>
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img id="icon" src={profileUrl} alt="" on:click={() => {
-        if (isLogin) {
-            location.href = "/mypage";
-        } else {
-            location.href = "/login";
-        }
-    }}/>
+    <img
+        id="icon"
+        src={profileUrl}
+        alt=""
+        on:click={() => {
+            if (isLogin) {
+                location.href = "/mypage";
+            } else {
+                location.href = "/login";
+            }
+        }}
+    />
 </div>
 
 <style lang="scss">
@@ -184,12 +188,10 @@
     }
 
     @media (max-width: 800px) {
-
-    #fake_header {
-        height: 57px;
-    }
+        #fake_header {
+            height: 57px;
+        }
         #container {
-
             height: 56px;
             width: calc(100% - 42px);
             padding-left: 20px;
@@ -211,7 +213,7 @@
                 font-size: 16px !important;
             }
 
-            #category_wrapper{
+            #category_wrapper {
                 padding-top: 0px;
             }
         }

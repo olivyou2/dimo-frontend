@@ -11,7 +11,6 @@ export const checkLogin = (cookies: Cookies): string => {
     const admins = [1, 2, 102];
 
     if (!userId || !admins.includes(parseInt(userId))) {
-        console.log("throw")
         throw redirect(307, "/");
     }
 

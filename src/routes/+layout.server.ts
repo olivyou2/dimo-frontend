@@ -27,6 +27,12 @@ export const load: ServerLoad = async (payload) => {
     let user = null;
     let selectedCategory = "전체";
 
+    console.log(url.pathname);
+
+    if (url.pathname !== "/") {
+        selectedCategory = "";
+    }
+
     if (userId) {
         user = await getUserProfile(parseInt(userId));
     }

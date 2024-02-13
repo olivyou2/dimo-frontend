@@ -1,8 +1,5 @@
 <script lang="ts">
-    type shadeDirection = 
-        "leftToRight" |
-        "rightToLeft"
-    ;
+    type shadeDirection = "leftToRight" | "rightToLeft";
 
     export let shadeEnable = true;
     export let shade: shadeDirection = "leftToRight";
@@ -11,16 +8,15 @@
 
     $: {
         if (shadeEnable) {
-            if (shade === "leftToRight"){
+            if (shade === "leftToRight") {
                 className = "ltr";
-            }else if (shade === "rightToLeft"){
+            } else if (shade === "rightToLeft") {
                 className = "rtl";
             }
         }
-
-        console.log(className);
     }
 </script>
+
 <div id="shade" class={className}><span></span></div>
 
 <style>
@@ -31,16 +27,24 @@
         height: 100%;
     }
 
-    #shade.ltr{
-        background: linear-gradient(270deg, rgba(251, 251, 251, 0.00) 0%, white 34.5%);
+    #shade.ltr {
+        background: linear-gradient(
+            270deg,
+            rgba(251, 251, 251, 0) 0%,
+            white 34.5%
+        );
         left: -20px;
 
         /* left: calc(100% - 20px); */
     }
 
-    #shade.rtl{
-        background: linear-gradient(90deg, rgba(251, 251, 251, 0.00) 0%, white 34.5%);
-    
+    #shade.rtl {
+        background: linear-gradient(
+            90deg,
+            rgba(251, 251, 251, 0) 0%,
+            white 34.5%
+        );
+
         left: calc(100%);
     }
 </style>
