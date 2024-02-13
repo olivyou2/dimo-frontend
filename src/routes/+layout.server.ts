@@ -1,6 +1,7 @@
 import { getUserProfile } from "$lib/user";
 import type { ServerLoad } from "@sveltejs/kit";
 import { type LayoutServerLoad } from "./$types";
+import { tokenStore } from "../store/tokenStore";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -22,7 +23,7 @@ export const load: ServerLoad = async (payload) => {
     const { params, cookies, url } = payload;
 
     const cats = await get_categories();
-    const userId = cookies.get("userId");
+    const accessToken = cookies.get("accessToken");
 
     let user = null;
     let selectedCategory = "전체";
@@ -31,8 +32,9 @@ export const load: ServerLoad = async (payload) => {
         selectedCategory = "";
     }
 
-    if (userId) {
-        user = await getUserProfile(parseInt(userId));
+    if (accessToken) {
+        user = await getUserProfile(accessToken);
+        tokenStore.set(accessToken);
     }
 
     url.searchParams.get("category") && (selectedCategory = url.searchParams.get("category") as string);

@@ -5,9 +5,9 @@ import type { PageServerLoad } from "./$types";
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
-async function get_pages(category: string, userId?: string): Promise<RenderPage[]> {
-    if (!userId) userId = "";
-    const result = await fetch(`${url}/api/place?category=${category}&tags=&userId=${userId}`);
+async function get_pages(category: string, accessToken?: string): Promise<RenderPage[]> {
+    if (!accessToken) accessToken = "";
+    const result = await fetch(`${url}/api/place?category=${category}&tags`, { headers: { Authorization: `Bearer ${accessToken}` } });
     const data = await result.json();
 
     const data_pages: PageResponse[] = data.places;
@@ -51,10 +51,10 @@ export const load: PageServerLoad = async ({ cookies, url, depends }) => {
         category = "";
     }
 
-    let userId = cookies.get("userId");
+    let accessToken = cookies.get("accessToken");
 
     return {
-        pages: await get_pages(category, userId),
+        pages: await get_pages(category, accessToken),
         tags: await get_tags(category),
         page: params.get("category"),
 

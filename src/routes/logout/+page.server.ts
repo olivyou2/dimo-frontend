@@ -1,5 +1,5 @@
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = ({cookies}) => {
-    cookies.delete("userId", { path: "/" });
+export const load: PageServerLoad = ({ cookies }) => {
+    cookies.delete("accessToken", { path: "/" });
 }

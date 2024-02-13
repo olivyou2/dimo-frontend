@@ -9,11 +9,12 @@ export type User = {
     profileUrl: string,
 }
 
-export const getUserProfile = async (userId: Number) => {
-    const result = await fetch(`${url}/api/user/${userId}`, {
+export const getUserProfile = async (accessToken: string) => {
+    const result = await fetch(`${url}/api/user/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
         },
     });
 

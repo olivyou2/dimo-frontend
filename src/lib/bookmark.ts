@@ -1,10 +1,11 @@
 const url = import.meta.env.VITE_BACKEND_URL;
 
-export const addBookmark = async (pageId: number, userId: number) => {
-    await fetch(`${url}/api/bookmark/${userId}?placeId=${pageId}`, {
+export const addBookmark = async (pageId: number, accessToken: string) => {
+    await fetch(`${url}/api/bookmark/?placeId=${pageId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
         },
     });
 };

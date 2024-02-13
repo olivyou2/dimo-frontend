@@ -6,13 +6,13 @@ export const load: PageServerLoad = async ({ url, cookies }) => {
      * @type {URLSearchParams}
      */
     const params = url.searchParams;
-    let userId = params.get("userId");
+    let accessToken = params.get("accessToken");
 
-    if (!userId) {
+    if (!accessToken) {
         return { login: false, href: "/login" };
     }
 
-    cookies.set("userId", userId, { path: "/" });
+    cookies.set("accessToken", accessToken, { path: "/" });
 
-    return { userId, login: true, href: "/" };
+    return { accessToken, login: true, href: "/" };
 }

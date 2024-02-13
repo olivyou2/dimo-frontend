@@ -1,5 +1,6 @@
 <script lang="ts">
     import Header from "../components/Header.svelte";
+    import { tokenStore } from "../store/tokenStore";
     import { userStore } from "../store/userStore";
 
     export let data;

@@ -6,10 +6,10 @@ const url = import.meta.env.VITE_BACKEND_URL;
 export const load: PageServerLoad = async ({ cookies, depends }) => {
     depends("mypage");
 
-    const userId = cookies.get("userId");
+    const accessToken = cookies.get("accessToken");
 
     async function fetch_data() {
-        const res = await fetch(`${url}/api/bookmark/${userId}`);
+        const res = await fetch(`${url}/api/bookmark/`, { headers: { Authorization: `Bearer ${accessToken}` } });
         const data: BookmarkResponse = await res.json();
 
         const bookmarks: Bookmark[] = data.bookmarks;
