@@ -6,7 +6,8 @@ import { redirect, type Cookies } from "@sveltejs/kit";
  * @returns userId
  */
 export const checkLogin = (cookies: Cookies): string => {
-    const userId = cookies.get("uesrId");
+    const userId = cookies.get("userId");
+    console.log(userId);
 
     const admins = [1, 2, 102];
 
