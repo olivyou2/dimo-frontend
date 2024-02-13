@@ -6,6 +6,7 @@
     import Icon from "../../components/Icon.svelte";
 
     export let data;
+    export let email = "toolscomfact@gmail.com";
     let edit = false;
 
     let bookmarks: Bookmark[];
@@ -17,6 +18,11 @@
 
     const onedit = () => {
         edit = !edit;
+    };
+
+    const onClickEmail = () => {
+        navigator.clipboard.writeText(email);
+        alert("이메일이 복사되었습니다.");
     };
 
     let showBookmarks: Bookmark[] = [];
@@ -61,8 +67,9 @@
             </div>
         </div>
     {:else}
+        <div id="top-shadow"></div>
         <div id="icons">
-            {#each showBookmarks as bookmark}
+            {#each [...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks, ...showBookmarks] as bookmark}
                 <div id={bookmark.id.toString()} class="icon">
                     <Icon {bookmark} bind:edit />
                 </div>
@@ -77,7 +84,20 @@
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div id="edit" on:click={onedit}>편집</div>
 
-        <div id="email">designarinstudio@gmail.com</div>
+        <div id="middle">
+            <a
+                id="site-info"
+                href="https://untitledesign.notion.site/47a2245a4ac64ec695d7e9baa79e8f69?pvs=4"
+                target="_blank"
+            >
+                사이트 소개
+            </a>
+            <span id="division">|</span>
+            <span id="email">
+                <a id="label" href="mailto:{email}"> 문의 </a>
+                <span id="email" on:click={onClickEmail}> {email} </span>
+            </span>
+        </div>
 
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -98,16 +118,52 @@
         color: rgba(0, 0, 0, 0.5);
         text-align: center;
         font-family: Pretendard;
-        font-size: 32px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 400;
-        line-height: 118.75%; /* 38px */
+        line-height: 150%; /* 38px */
+    }
+    #middle {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        > #site-info {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        > #email {
+            display: flex;
+            gap: 5px;
+
+            > #label {
+                text-decoration: none;
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            > #email {
+                cursor: pointer;
+            }
+        }
+    }
+    #top-shadow {
+        width: 100%;
+        height: 60px;
+        position: absolute;
+        top: 57px;
+        z-index: 10;
+
+        background: linear-gradient(
+            0deg,
+            rgba(251, 251, 251, 0) 0%,
+            #fbfbfb 60%
+        );
     }
     #container {
         padding: 0px 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
         .icon {
             height: fit-content;
         }
@@ -142,6 +198,10 @@
             padding-bottom: 120px;
             grid-auto-rows: min-content;
             /* margin-bottom: 140px; */
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
     }
 
@@ -162,7 +222,7 @@
         width: 100%;
 
         box-sizing: border-box;
-        padding: 0px 36px;
+        padding: 64px 36px 30px 36px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -178,15 +238,24 @@
         > #edit {
             cursor: pointer;
             user-select: none;
+            width: 100px;
+            text-align: left;
         }
 
         > #logout {
             cursor: pointer;
             user-select: none;
+            width: 100px;
+            text-align: right;
+            white-space: nowrap;
         }
     }
 
     @media (max-width: 800px) {
+        #top-shadow {
+            top: 39px;
+            height: 30px;
+        }
         #title {
             font-size: 24px !important;
         }
@@ -194,7 +263,10 @@
             padding: 0px 20px;
         }
         #footer {
-            height: 70px !important;
+            height: 83px !important;
+            top: -31px !important;
+            box-sizing: border-box;
+            padding-top: 53px;
         }
 
         #footer-wrapper {
@@ -202,12 +274,33 @@
         }
 
         #icons {
+            padding-top: 35px !important;
             height: calc(100vh - 303px) !important;
             grid-template-columns: repeat(
                 auto-fill,
                 minmax(10px, 100px)
             ) !important;
             row-gap: 36px !important;
+        }
+
+        #edit {
+            font-size: 14px !important;
+            width: 60px !important;
+            text-align: left;
+        }
+
+        #logout {
+            font-size: 14px !important;
+            width: 60px !important;
+            text-align: right;
+        }
+
+        #division {
+            display: none;
+        }
+
+        #middle > #email {
+            display: none;
         }
     }
 </style>

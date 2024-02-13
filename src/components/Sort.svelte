@@ -1,14 +1,6 @@
 <script>
     import { browser } from "$app/environment";
 
-    if (browser) {
-        document.body.addEventListener("click", (e) => {
-            sort_dropdown_visible = false;
-        });
-    }
-
-    let sort_dropdown_visible = false;
-
     export let selected = "가나다순";
     export let options = ["가나다순", "최신순"];
 
@@ -17,44 +9,21 @@
      * @param e {MouseEvent}
      */
     function on_click_sort(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        sort_dropdown_visible = !sort_dropdown_visible;
-    }
-
-    /**
-     * @description on click option
-     * @param option {string}
-     * @param e {MouseEvent}
-     */
-    function on_click_option(option, e) {
-        e.stopPropagation();
-
-        selected = option;
-        sort_dropdown_visible = false;
+        if (selected === options[0]) {
+            selected = options[1];
+        } else {
+            selected = options[0];
+        }
     }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div id="sort" class="sort" on:click={(e) => on_click_sort(e)}>
-    <button id="sortby">{selected}</button>
     <div id="icon_wrapper">
-        <img src="/dropdown.svg" alt="" width="8" height="14" />
+        <img src="/switch.svg" alt="" width="10" height="8" />
     </div>
-
-    {#if sort_dropdown_visible}
-        <div id="sort_dropdown">
-            {#each options as option}
-                <button
-                    class="option"
-                    on:click={(e) => on_click_option(option, e)}
-                    >{option}</button
-                >
-            {/each}
-        </div>
-    {/if}
+    <button id="sortby">{selected}</button>
 </div>
 
 <style lang="scss">

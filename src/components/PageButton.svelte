@@ -181,16 +181,6 @@
         > #title > #left {
             cursor: pointer;
         }
-
-        &:hover {
-            > #title > #left {
-                opacity: 0.5;
-            }
-
-            > a {
-                opacity: 0.5;
-            }
-        }
     }
 
     #title {
@@ -204,7 +194,7 @@
 
     #left {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         height: 33px;
         align-items: center;
 
@@ -260,6 +250,7 @@
         font-weight: 400;
         line-height: normal;
         padding-left: 4px;
+        margin-top: 4px;
 
         line-break: anywhere;
         text-decoration: none;

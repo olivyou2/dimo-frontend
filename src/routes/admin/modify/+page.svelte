@@ -77,7 +77,6 @@
         if (category === "" || !category) {
             return false;
         }
-        console.log("a");
         if (selected_categories.includes(category)) {
             selected_categories = selected_categories.filter(
                 (c) => c !== category,
@@ -159,7 +158,10 @@
                     document.getElementById("description").value,
                     document.getElementById("link").value,
                     selected_categories,
-                    document.getElementById("tags").value.split(","),
+                    document
+                        .getElementById("tags")
+                        .value.split(",")
+                        .map((t) => t.trim()),
                 )}>{submit_text}</button
         >
         <button on:click={on_click_back}>뒤로</button>

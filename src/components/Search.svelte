@@ -26,7 +26,7 @@
             font-family: Pretendard;
             font-size: 16px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 400;
             line-height: normal;
             width: 100%;
 
