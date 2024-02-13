@@ -8,6 +8,7 @@ const initialState: User = {
     provider: "",
     providerContent: "",
     profileUrl: "",
+    level: 0
 };
 
 export const userStore = writable<User>(initialState);

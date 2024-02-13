@@ -1,5 +1,6 @@
 import { checkLogin } from "$lib/checklogin";
 import type { PageResponse } from "$lib/page";
+import { userStore } from "../../store/userStore";
 import type { PageServerLoad } from "./$types";
 
 const url = import.meta.env.VITE_BACKEND_URL;
@@ -29,7 +30,7 @@ async function get_pages() {
 }
 
 export const load: PageServerLoad = async ({ cookies }) => {
-    checkLogin(cookies);
+    await checkLogin(cookies);
 
     return {
         pages: await get_pages()

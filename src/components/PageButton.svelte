@@ -7,6 +7,7 @@
     import emblaCarouselSvelte from "embla-carousel-svelte";
     import type { EmblaCarouselType } from "embla-carousel";
     import Shade from "./Shade.svelte";
+    import { tokenStore } from "../store/tokenStore";
 
     export let page: RenderPage;
     export let clickable: boolean = false;
@@ -31,7 +32,7 @@
         bookmarked = !bookmarked;
 
         if (bookmarked) {
-            await addBookmark(page.id, $userStore.id);
+            await addBookmark(page.id, $tokenStore);
             // await invalidateAll();
             await invalidate("pages");
         } else {

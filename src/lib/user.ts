@@ -7,6 +7,7 @@ export type User = {
     provider: string,
     providerContent: string,
     profileUrl: string,
+    level: number
 }
 
 export const getUserProfile = async (accessToken: string) => {

@@ -4,7 +4,7 @@ import type { PageServerLoad } from "../$types";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 export const load: PageServerLoad = async ({ cookies }) => {
-    checkLogin(cookies);
+    await checkLogin(cookies);
 
     async function get_categories() {
         const result = await fetch(`${url}/api/place/cat/`);

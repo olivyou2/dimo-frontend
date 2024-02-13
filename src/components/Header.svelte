@@ -94,21 +94,38 @@
         </div>
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img
-        id="icon"
-        src={profileUrl}
-        alt=""
-        on:click={() => {
-            if (isLogin) {
+    {#if isLogin}
+        <img
+            id="icon"
+            src={profileUrl}
+            alt=""
+            on:click={() => {
                 location.href = "/mypage";
-            } else {
+            }}
+        />
+    {:else}
+        <div
+            id="loginbtn"
+            on:click={() => {
                 location.href = "/login";
-            }
-        }}
-    />
+            }}
+        >
+            로그인
+        </div>
+    {/if}
 </div>
 
 <style lang="scss">
+    #loginbtn {
+        color: rgba(0, 0, 0, 0.8);
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        cursor: pointer;
+        padding-top: 3px;
+    }
     #fake_header {
         height: 80px;
     }
