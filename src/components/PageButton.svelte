@@ -10,7 +10,6 @@
     import { tokenStore } from "../store/tokenStore";
 
     export let page: RenderPage;
-    export let clickable: boolean = false;
     export let clicked: boolean = false;
     export let collapsed: boolean = false;
     export let bookmarked: boolean = page.bookmark ? true : false;
@@ -18,9 +17,7 @@
     $: bookmarked = page.bookmark ? true : false;
 
     const on_click = () => {
-        if (clickable) {
-            clicked = !clicked;
-        }
+        // window.open(page.link, "_blank");
     };
 
     const on_click_bookmark = async () => {
@@ -129,7 +126,7 @@
                 {/if}
             </div>
         </div>
-        <a href={page.link} id="link">
+        <a href={page.link} id="link" target="_blank">
             {page.link}
         </a>
     </div>
