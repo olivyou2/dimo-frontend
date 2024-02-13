@@ -22,9 +22,11 @@
             );
         }
     }
+
+    // tags = ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]
 </script>
 
-<div id="wrapper" use:emblaCarouselSvelte>
+<div id="wrapper" use:emblaCarouselSvelte={{ options: { dragFree: true, watchResize: true }, plugins: [] }}>
     <div id="container">
         {#each tags as tag}
             <Tag
@@ -32,24 +34,29 @@
                 onClickHandler={(activated) => onClickTag(activated, tag)}
             />
         {/each}
+        <div></div>
     </div>
 </div>
 
 <style lang="scss">
     #wrapper {
-        overflow: hidden;
+        overflow: scroll;
         width: 100%;
-        max-width: 1224px;
+        max-width: 1160px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     #container {
-        margin-top: 42px;
+        margin-top: 36px;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        gap: 16px;
+        gap: 8px;
         width: 100%;
-        max-width: 1224px;
+        max-width: 1160px;
     }
 
     @media (max-width: 800px) {

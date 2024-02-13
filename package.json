@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview --host",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"embla-carousel": "^8.0.0-rc22",
 		"embla-carousel-svelte": "^8.0.0-rc22",
 		"node-sass": "^9.0.0"
 	}

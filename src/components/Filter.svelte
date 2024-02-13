@@ -41,13 +41,15 @@
         display: flex;
         justify-content: center;
 
-        margin-top: 38px;
+        margin-top: 36px;
     }
     #container {
         display: flex;
         width: 100%;
-        max-width: 1224px;
+        max-width: 1160px;
         justify-content: space-between;
+        box-sizing: border-box;
+        padding: 0px 12px;
 
         > #search {
         }
@@ -61,6 +63,10 @@
     @media (max-width: 800px) {
         #wrapper {
             margin-top: 20px;
+        }
+
+        #container {
+            padding: 0px 4px 0px 4px;
         }
     }
 </style>

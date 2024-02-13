@@ -50,7 +50,7 @@
 </script>
 
 <div id="container">
-    <div id="title">마이페이지</div>
+    <!-- <div id="title">마이페이지</div> -->
     <Filter bind:sort_selected bind:query view_enable={false} />
     <div id="icons">
         {#each showBookmarks as bookmark}
@@ -81,6 +81,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        .icon {
+            height: fit-content;
+        }
         #logout {
             cursor: pointer;
         }
@@ -107,9 +110,10 @@
             grid-template-columns: repeat(auto-fill, minmax(10px, 196px));
             row-gap: 75px;
             justify-content: center;
-            height: calc(100vh - 530px);
+            height: calc(100vh - 393px);
             overflow-y: scroll;
             padding-bottom: 120px;
+            grid-auto-rows: min-content;
             /* margin-bottom: 140px; */
         }
     }
@@ -156,6 +160,12 @@
     }
 
     @media (max-width: 800px) {
+        #title{
+            font-size: 24px !important;
+        }
+        #container{
+            padding: 0px 20px;
+        }
         #footer {
             height: 70px !important;
         }
@@ -165,11 +175,12 @@
         }
 
         #icons {
-            height: calc(100vh - 392px) !important;
+            height: calc(100vh - 303px) !important;
             grid-template-columns: repeat(
                 auto-fill,
-                minmax(10px, 140px)
+                minmax(10px, 100px)
             ) !important;
+            row-gap: 36px !important;
         }
     }
 </style>

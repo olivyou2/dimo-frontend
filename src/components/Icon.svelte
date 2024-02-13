@@ -48,13 +48,14 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        gap: 28px;
+        gap: 20px;
         align-items: center;
         position: relative;
+        height: fit-content;
 
         > #icon {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             flex-shrink: 0;
 
             border-radius: 16px;
@@ -96,12 +97,33 @@
             color: rgba(0, 0, 0, 0.5);
             text-align: center;
             font-family: Pretendard;
-            font-size: 24px;
+            font-size: 20px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
             cursor: pointer;
             user-select: none;
         }
+    }
+
+    @media (max-width: 800px) {
+        #icon{
+            width: 52px !important;
+            height: 52px !important;
+        }
+
+        #title {
+            font-size: 16px !important;
+        }
+
+#delete {
+    position: absolute;
+    right: 15px !important;
+    top: -8px !important;
+    width: 20px;
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
     }
 </style>

@@ -71,7 +71,7 @@
             color: rgba(0, 0, 0, 0.5);
             text-align: right;
             font-family: Pretendard;
-            font-size: 16px;
+            font-size: 12px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;

@@ -74,11 +74,11 @@
         display: flex;
         align-items: flex-start;
         align-content: flex-start;
-        gap: 40px 24px;
+        gap: 24px;
         flex-wrap: wrap;
         width: 100%;
-        max-width: 1224px;
-        margin-top: 30px;
+        max-width: 1160px;
+        margin-top: 24px;
     }
 
     @media (max-width: 800px) {
@@ -89,7 +89,8 @@
 
         #container {
             justify-content: center;
-            row-gap: 20px;
+            row-gap: 16px;
+            margin-top: 20px;
         }
     }
 </style>

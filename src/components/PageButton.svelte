@@ -1,10 +1,14 @@
 <script lang="ts">
-    import { invalidate, invalidateAll } from "$app/navigation";
-    import { addBookmark, removeBookmark } from "$lib/bookmark";
     import type { RenderPage } from "$lib/page";
+    import { addBookmark, removeBookmark } from "$lib/bookmark";
+    import { invalidate } from "$app/navigation";
     import { tagStore } from "../store/tagStore";
     import { userStore } from "../store/userStore";
-
+    import emblaCarouselSvelte from "embla-carousel-svelte";
+    import type { EmblaCarouselType } from "embla-carousel";
+    import Shade from "./Shade.svelte";
+    
+    
     export let page: RenderPage;
     export let clickable: boolean = false;
     export let clicked: boolean = false;
@@ -41,27 +45,62 @@
     const on_click_tag = (tag: string) => {
         tagStore.set([...$tagStore, tag]);
     };
+
+    let emblaApi: EmblaCarouselType;
+    let ltrShade = false;
+    let rtlShade = false;
+
+    function onEmblaInit(event: CustomEvent<EmblaCarouselType>){
+        emblaApi = event.detail;
+        console.log(emblaApi);
+
+        emblaApi.on("scroll", (api, evt) => {
+            const progress = emblaApi.scrollProgress();
+
+            if (progress < 0.01){
+                ltrShade = false;
+                rtlShade = true;
+            }else if (progress > 0.99){
+                ltrShade = true;
+                rtlShade = false;
+            }else{
+                ltrShade = true;
+                rtlShade = true;
+            }
+
+            console.log(progress, ltrShade, rtlShade);
+        });
+    }
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
     id="container"
-    class={clicked ? "clicked" : ""}
+    class='{clicked ? "clicked" : ""} {collapsed ? "collapsed" : ""}'
     on:click={() => on_click()}
 >
     <div id="title_section">
         <div id="title">
             <div id="left">
-                <a href={page.link} id="text">
-                    {page.title}
-                </a>
+
                 <img
                     src={`https://www.google.com/s2/favicons?domain=${page.link}&sz=256`}
                     alt=""
                     width="22"
                     height="22"
                 />
+                <div id="embla_wrapper"  use:emblaCarouselSvelte={{ options: { dragFree: true }, plugins: [] }} on:emblaInit={onEmblaInit}>
+                    <div id="embla_container">
+                        <div id="text">
+                            {page.title}
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <Shade shade="leftToRight" shadeEnable={ltrShade}/>
+                    <Shade shade="rightToLeft" shadeEnable={rtlShade}/>
+                </div>
             </div>
             <div id="right">
                 {#if bookmarked}
@@ -96,7 +135,7 @@
         <div id="tag_section">
             {#each page.tags as tag}
                 <div class="tag" on:click={() => on_click_tag(tag)}>
-                    <span>:</span>
+                    <!-- <span>:</span> -->
                     <span>{tag}</span>
                 </div>
             {/each}
@@ -119,6 +158,10 @@
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
         background: #fff;
 
+        &.collapsed{
+            padding-bottom: 6px;
+        }
+
         /* border-radius: 8px;
         background: #fff;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05); */
@@ -130,11 +173,11 @@
         display: flex;
 
         width: 240px;
-        padding: 32px 4px 28px 4px;
+        padding: 16px 4px 16px 4px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: 8px;
+        // gap: 8px;
         max-width: 240px;
         box-sizing: border-box;
     }
@@ -150,25 +193,52 @@
 
     #left {
         display: flex;
-        gap: 7px;
+        gap: 10px;
         height: 33px;
         align-items: center;
+
+        width: 190px;
+        position: relative;
+    }
+
+    #right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #embla_wrapper {
+        width: fit-content;
+        overflow: scroll;
+        position: relative;
+        width: 158px;
+        // display: flex;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    #embla_container {
+        // width: fit-content;
+        display: flex;
     }
 
     #text {
         color: rgba(0, 0, 0, 0.7);
         font-family: Pretendard;
-        font-size: 28px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
         text-decoration: none;
+        white-space: nowrap;
     }
 
     #link {
         color: rgba(0, 0, 0, 0.5);
         font-family: Pretendard;
-        font-size: 16px;
+        font-size: 12px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -180,14 +250,14 @@
 
     #content_section {
         display: flex;
-        padding: 28px 0px 32px 0px;
+        padding: 16px 0px 16px 0px;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: 16px;
+        gap: 12px;
         width: 240px;
 
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
         padding-left: 4px;
         box-sizing: border-box;
     }
@@ -196,7 +266,7 @@
         display: flex;
         align-items: center;
         align-content: center;
-        gap: 4px 16px;
+        gap: 8px 6px;
         align-self: stretch;
         flex-wrap: wrap;
     }
@@ -206,21 +276,25 @@
         align-items: flex-start;
         gap: 4px;
 
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(0, 0, 0, 0.5);
         font-family: Pretendard;
-        font-size: 20px;
+        font-size: 12px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
 
         user-select: none;
         cursor: pointer;
+
+        border-radius: 50px;
+        padding: 5px 8px;
+        background: rgba(0, 0, 0, 0.05);
     }
 
     #description {
         color: rgba(0, 0, 0, 0.5);
         font-family: Pretendard;
-        font-size: 16px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 500;
         line-height: 160%; /* 25.6px */
@@ -243,6 +317,7 @@
 
     #bookmark {
         cursor: pointer;
+        width: 13px;
     }
 
     @media (max-width: 800px) {

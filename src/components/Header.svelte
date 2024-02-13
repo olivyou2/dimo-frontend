@@ -50,6 +50,10 @@
 
 </script>
 
+<div id="fake_header">
+
+</div>
+
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -101,9 +105,15 @@
 </div>
 
 <style lang="scss">
+    #fake_header {
+        height: 80px;
+    }
     #container {
+        z-index: 10;
+        top: 0px;
+        position: fixed;
         width: calc(100vw - 85px);
-        height: 120px;
+        height: 80px;
 
         display: flex;
         flex-direction: row;
@@ -119,6 +129,7 @@
 
         > #logo {
             cursor: pointer;
+            width: 96px;
         }
 
         > #logo_mobile {
@@ -128,19 +139,19 @@
         }
 
         > #category_wrapper {
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
             flex: 1;
-            padding-top: 5px;
+            padding-top: 3px;
             overflow: hidden;
             > #categories {
                 display: flex;
-                gap: 40px;
+                gap: 36px;
                 // justify-content: center;
                 > .category {
                     color: rgba(0, 0, 0, 0.5);
                     font-family: Pretendard;
-                    font-size: 24px;
+                    font-size: 16px;
                     font-style: normal;
                     font-weight: 500;
                     line-height: normal;
@@ -164,8 +175,8 @@
 
         > #icon {
             border-radius: 25px;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             outline: 1px solid rgba(0, 0, 0, 0.2);
             overflow: clip;
             cursor: pointer;
@@ -173,7 +184,12 @@
     }
 
     @media (max-width: 800px) {
+
+    #fake_header {
+        height: 57px;
+    }
         #container {
+
             height: 56px;
             width: calc(100% - 42px);
             padding-left: 20px;

@@ -25,22 +25,22 @@
         src="/tag/{activated ? 'remove.svg' : 'add.svg'}"
         alt=""
         id="indicator"
-        width="12"
-        height="12"
+        width="8"
+        height="8"
     />
     {tag}
 </div>
 
 <style>
     .tag {
-        padding: 8px 16px;
+        padding: 6px 12px;
         border-radius: 24px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        background: white;
+        /* border: 1px solid rgba(0, 0, 0, 0.2); */
+        background: rgba(0,0,0,0.05);
 
-        color: rgba(0, 0, 0, 0.6);
+        color: rgba(0, 0, 0, 0.5);
         font-family: Pretendard;
-        font-size: 20px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -49,7 +49,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 14px;
+        gap: 8px;
 
         user-select: none;
         cursor: pointer;
@@ -63,7 +63,7 @@
 
     @media (max-width: 800px) {
         .tag {
-            padding: 4px 8px;
+            padding: 6px 12px;
             font-size: 14px;
             gap: 8px;
         }

@@ -6,7 +6,7 @@
 </script>
 
 <div id="container">
-    <img id="search_icon" src="/search.svg" alt="" width="22" height="22" />
+    <img id="search_icon" src="/search.svg" alt="" width="16" height="16" />
     <input
         type="text"
         id="search"
@@ -18,13 +18,13 @@
 <style lang="scss">
     #container {
         display: flex;
-        gap: 20px;
+        gap: 12px;
         align-items: center;
 
         > #search {
             color: black;
             font-family: Pretendard;
-            font-size: 20px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
