@@ -74,8 +74,8 @@
 
         > #delete {
             position: absolute;
-            right: 31px;
-            top: -14px;
+            right: 50px;
+            top: -10px;
             cursor: pointer;
 
             transition: all 0.1s ease-in-out;
@@ -107,7 +107,7 @@
     }
 
     @media (max-width: 800px) {
-        #icon{
+        #icon {
             width: 52px !important;
             height: 52px !important;
         }
@@ -116,14 +116,14 @@
             font-size: 16px !important;
         }
 
-#delete {
-    position: absolute;
-    right: 15px !important;
-    top: -8px !important;
-    width: 20px;
-    cursor: pointer;
+        #delete {
+            position: absolute;
+            right: 15px !important;
+            top: -8px !important;
+            width: 20px;
+            cursor: pointer;
 
-    transition: all 0.1s ease-in-out;
-}
+            transition: all 0.1s ease-in-out;
+        }
     }
 </style>
