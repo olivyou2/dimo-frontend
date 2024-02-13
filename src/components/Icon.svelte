@@ -60,11 +60,10 @@
             flex-shrink: 0;
 
             border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            background: #fff;
             cursor: pointer;
 
             transition: all 0.1s ease-in-out;
+            filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.05));
         }
 
         > #icon.edit {

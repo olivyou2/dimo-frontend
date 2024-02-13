@@ -77,6 +77,7 @@
         <div id="title">
             <div id="left" on:click={on_click}>
                 <img
+                    id="favicon"
                     src={`https://www.google.com/s2/favicons?domain=${page.link}&sz=256`}
                     alt=""
                     width="22"
@@ -210,6 +211,11 @@
         flex: 1;
         position: relative;
         max-width: calc(100% - 30px);
+    }
+
+    #favicon {
+        border-radius: 100%;
+        border: solid 1px rgba(0, 0, 0, 0.1);
     }
 
     #right {

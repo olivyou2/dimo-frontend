@@ -49,7 +49,7 @@
         max-width: 1160px;
         justify-content: space-between;
         box-sizing: border-box;
-        padding: 0px 12px;
+        padding: 0px 4px;
 
         > #search {
         }
