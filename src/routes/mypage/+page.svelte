@@ -6,7 +6,7 @@
     import Icon from "../../components/Icon.svelte";
 
     export let data;
-    export let email = "toolscomfact@gmail.com";
+    export let email = "designarinstudio@gmail.com";
     let edit = false;
 
     let bookmarks: Bookmark[];
