@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { RenderPage } from "$lib/page";
     import type { SortTypes, ViewTypes } from "$lib/sort";
+    import AdsPageButton from "../components/AdsPageButton.svelte";
     import Filter from "../components/Filter.svelte";
     import Header from "../components/Header.svelte";
     import PageButton from "../components/PageButton.svelte";
@@ -58,6 +59,7 @@
         {#each show_sites as site}
             <PageButton page={site} collapsed={view_selected === "간단히"} />
         {/each}
+        <AdsPageButton />
     </div>
 </div>
 
