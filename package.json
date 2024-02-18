@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"csv-parser": "^3.0.0",
 		"embla-carousel": "^8.0.0-rc22",
 		"embla-carousel-svelte": "^8.0.0-rc22",
 		"node-sass": "^9.0.0"

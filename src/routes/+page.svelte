@@ -55,6 +55,19 @@
     <Filter bind:query bind:view_selected bind:sort_selected />
     <Tags {tags} />
 
+    <ins
+        class="kakao_ad_area"
+        style="display:none;"
+        data-ad-unit="DAN-S5BTvH5u6XcWHLV7"
+        data-ad-width="320"
+        data-ad-height="100"
+    ></ins>
+    <script
+        type="text/javascript"
+        src="//t1.daumcdn.net/kas/static/ba.min.js"
+        async
+    ></script>
+
     <div id="container">
         {#each show_sites as site}
             <PageButton page={site} collapsed={view_selected === "간단히"} />

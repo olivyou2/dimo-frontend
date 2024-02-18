@@ -37,9 +37,9 @@
 
     const header = "카테고리,제목,링크,태그,설명";
     const field = pages.map((page) => {
-      return `${page.category},${page.title},${page.link},${page.tags.join(
-        ",",
-      )},${page.description}`;
+      return `"${page.category}","${page.title}","${
+        page.link
+      }","${page.tags.join(",")}","${page.description}"`;
     });
 
     let csv = header + "\n" + field.join("\n");
@@ -48,12 +48,21 @@
     const url = window.URL.createObjectURL(blob);
     window.open(url);
   }
+
+  function on_click_csv_upload() {
+    const csvText = prompt("csv 업로드");
+
+    if (!csvText) {
+      return null;
+    }
+  }
 </script>
 
 <div id="container">
   <div id="buttons">
     <button id="new-page" on:click={on_click_add}>새 페이지 추가</button>
     <button id="save-csv" on:click={on_click_csv}>CSV 내려받기</button>
+    <button id="upload-csv" on:click={on_click_csv_upload}>CSV 내려받기</button>
   </div>
   <table>
     <thead>
@@ -90,7 +99,8 @@
 </div>
 
 <style>
-  #new-page {
+  #new-page,
+  #save-csv {
     margin-right: 10px;
   }
 
