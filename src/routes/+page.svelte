@@ -74,7 +74,7 @@
         {#each show_sites as site}
             <PageButton page={site} collapsed={view_selected === "간단히"} />
         {/each}
-        <AdsPageButton />
+        <!-- <AdsPageButton /> -->
     </div>
 </div>
 
@@ -88,7 +88,9 @@
     }
 
     #adv {
+        width: 100%;
         max-width: 1160px;
+        margin-top: 18px;
     }
 
     #container {
