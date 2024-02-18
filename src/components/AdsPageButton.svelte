@@ -3,7 +3,7 @@
         class="kakao_ad_area"
         style="display:none;"
         data-ad-unit="DAN-Bll8UPs80G0XpY2E"
-        data-ad-width="300"
+        data-ad-width="272"
         data-ad-height="250"
     ></ins>
     <script

@@ -52,21 +52,23 @@
 </script>
 
 <div id="layout">
+    <div id="adv">
+        <ins
+            class="kakao_ad_area"
+            style="display:none;"
+            data-ad-unit="DAN-S5BTvH5u6XcWHLV7"
+            data-ad-width="320"
+            data-ad-height="100"
+        ></ins>
+        <script
+            type="text/javascript"
+            src="//t1.daumcdn.net/kas/static/ba.min.js"
+            async
+        ></script>
+    </div>
+
     <Filter bind:query bind:view_selected bind:sort_selected />
     <Tags {tags} />
-
-    <ins
-        class="kakao_ad_area"
-        style="display:none;"
-        data-ad-unit="DAN-S5BTvH5u6XcWHLV7"
-        data-ad-width="320"
-        data-ad-height="100"
-    ></ins>
-    <script
-        type="text/javascript"
-        src="//t1.daumcdn.net/kas/static/ba.min.js"
-        async
-    ></script>
 
     <div id="container">
         {#each show_sites as site}
@@ -83,6 +85,10 @@
         align-items: center;
         padding: 0px 40px;
         padding-bottom: 100px;
+    }
+
+    #adv {
+        max-width: 1160px;
     }
 
     #container {
