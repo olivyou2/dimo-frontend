@@ -9,7 +9,7 @@ RUN npm install
 ADD . /app
 RUN npm run build
 
-ENV VITE_BACKEND_URL=https://api.untitle.xyz:8084
+ENV VITE_BACKEND_URL=https://api.untitle.xyz/
 
 EXPOSE 4173
 
